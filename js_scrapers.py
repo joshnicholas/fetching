@@ -1,4 +1,5 @@
 from playwright.sync_api import sync_playwright
+# from playwright_stealth import stealth_sync
 import dateparser
 import datetime 
 import pytz
@@ -25,21 +26,17 @@ def rand_delay(num):
   time.sleep(rando)
 
 def shot_grabber(urlo, who,site, siteurl, out_path,  javascript_code, awaito):
+    print(f"Scraping {who}")
     tries = 0
-    with sync_playwright() as p:
-        try:
-            # print("Trying")
+    try:
+        with sync_playwright() as p:
             browser = p.firefox.launch()
             # browser = p.chromium.launch()
 
             context = browser.new_context()
 
             page = context.new_page()
-            print(page)
 
-            # stealth_sync(page)
-
-            print("Going")
 
             page.goto(urlo)
 
@@ -52,6 +49,7 @@ def shot_grabber(urlo, who,site, siteurl, out_path,  javascript_code, awaito):
 
             print("Resulto: ", resulto)
 
+            context.close()
             browser.close()
 
             frame = pd.DataFrame.from_records(resulto)
@@ -71,57 +69,43 @@ def shot_grabber(urlo, who,site, siteurl, out_path,  javascript_code, awaito):
             frame['Published']= pd.to_datetime(frame['Published'], utc=True)
             frame['Published'] = frame['Published'].dt.strftime("%Y_%m_%d_%H")
 
-            old = pd.read_csv('data/combined.csv')
+            dumper(f'scraped/{out_path}/dumps', f"{format_scrape_time }", frame)
 
-            tog = pd.concat([frame, old])
-            tog.drop_duplicates(subset=['Headline','Url'], inplace=True)
-
-            dumper('data', 'combined', tog)
-
-            dumper(f'data/{out_path}', f"{format_scrape_time }", frame)
-
+            rand_delay(5)
             return frame 
 
-        except Exception as e:
-            tries += 1
-            print("Tries: ", tries)
-            browser.close()
-            print(e)
-            rand_delay(5)
-            if tries <= 3:
-            # if e == 'Timeout 30000ms exceeded.' and tries <= 3:
-                print("Trying again")
-                shot_grabber(urlo, who,site, siteurl, out_path,  javascript_code, awaito)
+    except Exception as e:
+        tries += 1
+        print("Tries: ", tries)
+        context.close()
+        browser.close()
+        print(e)
+        rand_delay(5)
+        if tries <= 3:
+        # if e == 'Timeout 30000ms exceeded.' and tries <= 3:
+            print("Trying again")
+            shot_grabber(urlo, who,site, siteurl, out_path,  javascript_code, awaito)
 
 
 
 
 
-# print("Scraping Sean Kelly")
-
-# try:
-#     smh = shot_grabber('https://www.smh.com.au/by/sean-kelly-h1d26a','Sean Kelly', 
-#                        'SMH','https://www.smh.com.au/', "sean_kelly",
-#         """
-#         Array.from(document.querySelectorAll('._3SZUs,.X3yYQ'), el => {
-#         let Headline = el.querySelector('h3').innerText;
-#         let Url = el.querySelector('a')['href']
-#         let Published = el.querySelector('._2_zR-')['dateTime']
-#         return {Headline, Url, Published};
-#         })""",
-#         '._2VCps _2GpEY')
-    
-# except Exception as e:
-#     print(e)
+# smh = shot_grabber('https://www.smh.com.au/by/sean-kelly-h1d26a','Sean Kelly', 
+# 'SMH','https://www.smh.com.au/', "sean_kelly",
+# """
+# Array.from(document.querySelectorAll('._3SZUs,.X3yYQ'), el => {
+# let Headline = el.querySelector('h3').innerText;
+# let Url = el.querySelector('a')['href']
+# let Published = el.querySelector('._2_zR-')['dateTime']
+# return {Headline, Url, Published};
+# })""",
+# '._2VCps _2GpEY')
 
 
 
-# print("Scraping Reuters")
-
-# try:
-#     smh = shot_grabber('https://www.reuters.com/graphics/','Reuters Graphics', 
-#                        'Reuters','https://www.reuters.com', "reuters",
-#         """
+# smh = shot_grabber('https://www.reuters.com/graphics/','Reuters Graphics', 
+#                     'Reuters','https://www.reuters.com', "reuters",
+# """
 # Array.from(document.querySelectorAll('article.svelte-11dknnx,div.hero-row'), el => {
 
 # let Headline = el.querySelector('h2,h3').innerText;
@@ -129,18 +113,14 @@ def shot_grabber(urlo, who,site, siteurl, out_path,  javascript_code, awaito):
 # let Published = el.querySelector('small').innerText;
 # return {Headline, Url, Published};
 # })""",
-#         '.hero-row clearfix')
-    
-# except Exception as e:
-#     print(e)
+# '.hero-row clearfix')
 
-print("Scraping SCMP")
 
-try:
-    smh = shot_grabber('https://www.scmp.com/infographic/#recentproj','SCMP Graphics', 
-                       'SCMP','https://www.scmp.com', "scmp",
-        """
-Array.from(document.querySelectorAll('#half0'), el => {
+
+smh = shot_grabber('https://www.scmp.com/infographic/#recentproj','SCMP Graphics', 
+                    'SCMP','https://www.scmp.com', "scmp",
+"""
+Array.from(document.querySelectorAll('.half'), el => {
 let Headline = el.querySelector('h2').innerText;
 let Url = el.querySelector('a')['href']
 let Published = el.querySelector('.feed-date').innerText.split("|")
@@ -148,13 +128,8 @@ Published = Published.pop().trim()
 
 return {Headline, Url, Published};
 })""",
-        '#allFeature')
+'#half0')
     
-except Exception as e:
-    print(e)
 
 
-# Published = Published.slice(-1)
-# let Url = el.querySelector('a')['href']
-# return {Headline, Url};
 
