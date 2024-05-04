@@ -38,7 +38,7 @@ jobs:
           playwright install firefox
 
       - name: 🍳 Scrape top stories
-        run: python3 js_scrapers.py.py
+        run: python3 js_scrapers.py
         
       - name: 🚀 Commit and push if it changed
         run: |
