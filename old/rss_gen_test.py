@@ -30,7 +30,7 @@ def make_feed(frame, who,site, siteurl, out_path):
         fe = fg.add_entry()
         fe.id(entries['Url'][ind])
         fe.title(entries['Headline'][ind])
-        fe.link(href=entries['Siteurl'][ind])
+        fe.link(href=entries['Url'][ind])
         fe.description(entries['Who'][ind])
         fe.published(entries['Published'][ind])
 

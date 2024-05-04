@@ -35,7 +35,7 @@ def make_feed(frame, who,site, siteurl, out_path):
 
     fg = FeedGenerator()
     fg.id(f'{siteurl}')
-    fg.title(f'{site}')
+    fg.title(f'{who} {site}')
     fg.author( {'name':f'{who}'} )
     fg.description("Hi")
 
@@ -47,7 +47,7 @@ def make_feed(frame, who,site, siteurl, out_path):
         fe = fg.add_entry()
         fe.id(entries['Url'][ind])
         fe.title(entries['Headline'][ind])
-        fe.link(href=entries['Siteurl'][ind])
+        fe.link(href=entries['Url'][ind])
         fe.description(entries['Who'][ind])
         fe.published(entries['Published'][ind])
 
