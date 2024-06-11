@@ -17,6 +17,14 @@ today = datetime.datetime.now()
 scrape_time = today.astimezone(pytz.timezone("Australia/Brisbane"))
 format_scrape_time = datetime.datetime.strftime(scrape_time, "%Y_%m_%d_%H")
 
+def make_path(out_path):
+    already_there = os.listdir("scraped")
+
+    if out_path not in already_there:
+        # print('SOMETHING')
+        os.mkdir(f"scraped/{out_path}")
+        os.mkdir(f"scraped/{out_path}/dumps")
+
 def dumper(path, name, frame):
     with open(f'{path}/{name}.csv', 'w') as f:
         frame.to_csv(f, index=False, header=True)
@@ -25,7 +33,7 @@ def rand_delay(num):
   import random 
   import time 
   rando = random.random() * num
-  print(rando)
+#   print(rando)
   time.sleep(rando)
 
 def make_feed(frame, who,site, siteurl, out_path):
@@ -58,6 +66,7 @@ def make_feed(frame, who,site, siteurl, out_path):
 
 def shot_grabber(tries, urlo, who,site, siteurl, out_path,  javascript_code, awaito, wait=False):
     print(f"Scraping {who}")
+    make_path(out_path)
     # tries = 0
     try:
         with sync_playwright() as p:
@@ -136,7 +145,7 @@ return {Headline, Url, Published};
 })""",
 '._2VCps _2GpEY')
 
-
+rand_delay(2)
 
 shot_grabber(0,'https://www.reuters.com/graphics/','Reuters Graphics', 
 'Reuters','https://www.reuters.com', "reuters_graphics",
@@ -150,7 +159,7 @@ return {Headline, Url, Published};
 })""",
 '.hero-row clearfix')
 
-
+rand_delay(2)
 
 shot_grabber(0,'https://www.scmp.com/infographic/#recentproj','SCMP Graphics', 
 'SCMP','https://www.scmp.com', "scmp_graphics",
@@ -163,8 +172,65 @@ Published = Published.pop().trim()
 
 return {Headline, Url, Published};
 })""",
-'#half0')
+'.featureContainer')
     
+rand_delay(2)
 
+shot_grabber(0,'https://www.abc.net.au/news/interactives','ABC Storylab', 
+'ABC','https://www.abc.net.au', "abc_storylab",
+"""
+Array.from(document.querySelectorAll('.CardLayout_flex__QnHKw'), el => {
+let Headline = el.querySelector('h3').innerText;
 
+let Url = el.querySelector('[data-component="Link"]')['href']
+let Published = el.querySelector('time').getAttribute("datetime")
+
+return {Headline, Url, Published};
+})""",
+'[data-component="CardList"]')
+
+rand_delay(2)
+
+shot_grabber(0,'https://www.abc.net.au/news/alex-lim/103417492','ABC Alex Lim', 
+'ABC','https://www.abc.net.au', "alex_lim",
+"""
+Array.from(document.querySelectorAll('.CardLayout_flex__QnHKw'), el => {
+let Headline = el.querySelector('h3').innerText;
+
+let Url = el.querySelector('[data-component="Link"]')['href']
+let Published = el.querySelector('time').getAttribute("datetime")
+
+return {Headline, Url, Published};
+})""",
+'[data-component="CardList"]')
+
+rand_delay(2)
+
+shot_grabber(0,'https://www.abc.net.au/news/inga-ting/8749946','ABC Inga Ting', 
+'ABC','https://www.abc.net.au', "inga_ting",
+"""
+Array.from(document.querySelectorAll('.CardLayout_flex__QnHKw'), el => {
+let Headline = el.querySelector('h3').innerText;
+
+let Url = el.querySelector('[data-component="Link"]')['href']
+let Published = el.querySelector('time').getAttribute("datetime")
+
+return {Headline, Url, Published};
+})""",
+'[data-component="CardList"]')
+
+rand_delay(2)
+
+shot_grabber(0,'https://www.abc.net.au/news/julian-fell/13905936','ABC Julian Fell', 
+'ABC','https://www.abc.net.au', "julian_fell",
+"""
+Array.from(document.querySelectorAll('.CardLayout_flex__QnHKw'), el => {
+let Headline = el.querySelector('h3').innerText;
+
+let Url = el.querySelector('[data-component="Link"]')['href']
+let Published = el.querySelector('time').getAttribute("datetime")
+
+return {Headline, Url, Published};
+})""",
+'[data-component="CardList"]')
 
