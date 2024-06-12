@@ -147,6 +147,34 @@ return {Headline, Url, Published};
 
 rand_delay(2)
 
+
+shot_grabber(0,'https://www.smh.com.au/by/the-visual-stories-team-p53776','SMH Visual Stories', 
+'SMH','https://www.smh.com.au/', "smh_visual_stories",
+"""
+Array.from(document.querySelectorAll('._3SZUs,.X3yYQ'), el => {
+let Headline = el.querySelector('h3').innerText;
+let Url = el.querySelector('a')['href']
+let Published = el.querySelector('._2_zR-')['dateTime']
+return {Headline, Url, Published};
+})""",
+'._2VCps _2GpEY')
+
+rand_delay(2)
+
+shot_grabber(0,'https://www.smh.com.au/by/craig-butt-hvf8q','Craig Butt', 
+'SMH','https://www.smh.com.au/', "craig_butt",
+"""
+Array.from(document.querySelectorAll('._3SZUs,.X3yYQ'), el => {
+let Headline = el.querySelector('h3').innerText;
+let Url = el.querySelector('a')['href']
+let Published = el.querySelector('._2_zR-')['dateTime']
+return {Headline, Url, Published};
+})""",
+'._2VCps _2GpEY')
+
+rand_delay(2)
+
+
 shot_grabber(0,'https://www.reuters.com/graphics/','Reuters Graphics', 
 'Reuters','https://www.reuters.com', "reuters_graphics",
 """
