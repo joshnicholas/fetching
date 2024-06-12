@@ -59,13 +59,13 @@ def make_feed(frame, who,site, siteurl, out_path):
         fe.description(entries['Who'][ind])
         fe.published(entries['Published'][ind])
 
-    print(f'{out_path}/rss.xml')
+    # print(f'{out_path}/rss.xml')
     fg.rss_str(pretty=True)
     rssfeed  = fg.rss_str(pretty=True)
     fg.rss_file(f'scraped/{out_path}/rss.xml') 
 
 def shot_grabber(tries, urlo, who,site, siteurl, out_path,  javascript_code, awaito, wait=False):
-    print(f"Scraping {who}")
+    print(f"\nScraping {who}")
     make_path(out_path)
     # tries = 0
     try:
@@ -108,6 +108,7 @@ def shot_grabber(tries, urlo, who,site, siteurl, out_path,  javascript_code, awa
             frame = frame[['Who', 'scraped_datetime', 'Headline', 'Url', 'Site', 'Siteurl', 'Published']]
 
             frame['Published']= pd.to_datetime(frame['Published'], utc=True)
+            frame.sort_values(by=['Published'], ascending=False, inplace=True)
             frame['Published'] = frame['Published'].dt.strftime("%Y_%m_%d_%H")
 
             dumper(f'scraped/{out_path}', f"latest", frame)
