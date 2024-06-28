@@ -17,6 +17,11 @@ today = datetime.datetime.now()
 scrape_time = today.astimezone(pytz.timezone("Australia/Brisbane"))
 format_scrape_time = datetime.datetime.strftime(scrape_time, "%Y_%m_%d_%H")
 
+dayo = datetime.datetime.today().weekday()
+secondo = False
+if dayo % 2 == 0:
+    secondo = True
+
 def make_path(out_path):
     already_there = os.listdir("scraped")
 
@@ -133,10 +138,8 @@ def shot_grabber(tries, urlo, who,site, siteurl, out_path,  javascript_code, awa
 
 
 
-
-
-shot_grabber(0,'https://www.smh.com.au/by/sean-kelly-h1d26a','Sean Kelly', 
-'SMH','https://www.smh.com.au/', "sean_kelly",
+shot_grabber(0,'https://www.theage.com.au/by/daniel-brettig-p4ywcj','Daniel Brettig', 
+'The Age','https://www.theage.com.au/', "daniel_brettig",
 """
 Array.from(document.querySelectorAll('._3SZUs,.X3yYQ'), el => {
 let Headline = el.querySelector('h3').innerText;
@@ -148,32 +151,47 @@ return {Headline, Url, Published};
 
 rand_delay(2)
 
+if secondo:
+    shot_grabber(0,'https://www.smh.com.au/by/sean-kelly-h1d26a','Sean Kelly', 
+    'SMH','https://www.smh.com.au/', "sean_kelly",
+    """
+    Array.from(document.querySelectorAll('._3SZUs,.X3yYQ'), el => {
+    let Headline = el.querySelector('h3').innerText;
+    let Url = el.querySelector('a')['href']
+    let Published = el.querySelector('._2_zR-')['dateTime']
+    return {Headline, Url, Published};
+    })""",
+    '._2VCps _2GpEY')
 
-shot_grabber(0,'https://www.smh.com.au/by/the-visual-stories-team-p53776','SMH Visual Stories', 
-'SMH','https://www.smh.com.au/', "smh_visual_stories",
-"""
-Array.from(document.querySelectorAll('._3SZUs,.X3yYQ'), el => {
-let Headline = el.querySelector('h3').innerText;
-let Url = el.querySelector('a')['href']
-let Published = el.querySelector('._2_zR-')['dateTime']
-return {Headline, Url, Published};
-})""",
-'._2VCps _2GpEY')
+    rand_delay(2)
 
-rand_delay(2)
+if secondo:
+    shot_grabber(0,'https://www.smh.com.au/by/the-visual-stories-team-p53776','SMH Visual Stories', 
+    'SMH','https://www.smh.com.au/', "smh_visual_stories",
+    """
+    Array.from(document.querySelectorAll('._3SZUs,.X3yYQ'), el => {
+    let Headline = el.querySelector('h3').innerText;
+    let Url = el.querySelector('a')['href']
+    let Published = el.querySelector('._2_zR-')['dateTime']
+    return {Headline, Url, Published};
+    })""",
+    '._2VCps _2GpEY')
 
-shot_grabber(0,'https://www.smh.com.au/by/craig-butt-hvf8q','Craig Butt', 
-'SMH','https://www.smh.com.au/', "craig_butt",
-"""
-Array.from(document.querySelectorAll('._3SZUs,.X3yYQ'), el => {
-let Headline = el.querySelector('h3').innerText;
-let Url = el.querySelector('a')['href']
-let Published = el.querySelector('._2_zR-')['dateTime']
-return {Headline, Url, Published};
-})""",
-'._2VCps _2GpEY')
+    rand_delay(2)
 
-rand_delay(2)
+if not secondo:
+    shot_grabber(0,'https://www.smh.com.au/by/craig-butt-hvf8q','Craig Butt', 
+    'SMH','https://www.smh.com.au/', "craig_butt",
+    """
+    Array.from(document.querySelectorAll('._3SZUs,.X3yYQ'), el => {
+    let Headline = el.querySelector('h3').innerText;
+    let Url = el.querySelector('a')['href']
+    let Published = el.querySelector('._2_zR-')['dateTime']
+    return {Headline, Url, Published};
+    })""",
+    '._2VCps _2GpEY')
+
+    rand_delay(2)
 
 
 shot_grabber(0,'https://www.reuters.com/graphics/','Reuters Graphics', 
@@ -190,20 +208,21 @@ return {Headline, Url, Published};
 
 rand_delay(2)
 
-shot_grabber(0,'https://www.scmp.com/infographic/#recentproj','SCMP Graphics', 
-'SCMP','https://www.scmp.com', "scmp_graphics",
-"""
-Array.from(document.querySelectorAll('.half'), el => {
-let Headline = el.querySelector('h2').innerText;
-let Url = el.querySelector('a')['href']
-let Published = el.querySelector('.feed-date').innerText.split("|")
-Published = Published.pop().trim()
+if secondo:
+    shot_grabber(0,'https://www.scmp.com/infographic/#recentproj','SCMP Graphics', 
+    'SCMP','https://www.scmp.com', "scmp_graphics",
+    """
+    Array.from(document.querySelectorAll('.half'), el => {
+    let Headline = el.querySelector('h2').innerText;
+    let Url = el.querySelector('a')['href']
+    let Published = el.querySelector('.feed-date').innerText.split("|")
+    Published = Published.pop().trim()
 
-return {Headline, Url, Published};
-})""",
-'.featureContainer')
-    
-rand_delay(2)
+    return {Headline, Url, Published};
+    })""",
+    '.featureContainer')
+        
+    rand_delay(2)
 
 shot_grabber(0,'https://www.abc.net.au/news/interactives','ABC Storylab', 
 'ABC','https://www.abc.net.au', "abc_storylab",
@@ -235,134 +254,136 @@ return {Headline, Url, Published};
 
 rand_delay(2)
 
-shot_grabber(0,'https://www.abc.net.au/news/inga-ting/8749946','ABC Inga Ting', 
-'ABC','https://www.abc.net.au', "inga_ting",
-"""
-Array.from(document.querySelectorAll('.CardLayout_flex__QnHKw'), el => {
-let Headline = el.querySelector('h3').innerText;
+if secondo:
+    shot_grabber(0,'https://www.abc.net.au/news/inga-ting/8749946','ABC Inga Ting', 
+    'ABC','https://www.abc.net.au', "inga_ting",
+    """
+    Array.from(document.querySelectorAll('.CardLayout_flex__QnHKw'), el => {
+    let Headline = el.querySelector('h3').innerText;
 
-let Url = el.querySelector('[data-component="Link"]')['href']
-let Published = el.querySelector('time').getAttribute("datetime")
+    let Url = el.querySelector('[data-component="Link"]')['href']
+    let Published = el.querySelector('time').getAttribute("datetime")
 
-return {Headline, Url, Published};
-})""",
-'[data-component="CardList"]')
+    return {Headline, Url, Published};
+    })""",
+    '[data-component="CardList"]')
 
-rand_delay(2)
-
-
-
-shot_grabber(0,'https://www.abc.net.au/news/matt-liddy/201998','ABC Matt Liddy', 
-'ABC','https://www.abc.net.au', "matt-liddy",
-"""
-Array.from(document.querySelectorAll('.CardLayout_flex__QnHKw'), el => {
-let Headline = el.querySelector('h3').innerText;
-
-let Url = el.querySelector('[data-component="Link"]')['href']
-let Published = el.querySelector('time').getAttribute("datetime")
-
-return {Headline, Url, Published};
-})""",
-'[data-component="CardList"]')
-
-rand_delay(2)
-
-shot_grabber(0,'https://www.abc.net.au/news/ben-spraggon/5449826','ABC Ben Spraggon', 
-'ABC','https://www.abc.net.au', "ben_spraggon",
-"""
-Array.from(document.querySelectorAll('.CardLayout_flex__QnHKw'), el => {
-let Headline = el.querySelector('h3').innerText;
-
-let Url = el.querySelector('[data-component="Link"]')['href']
-let Published = el.querySelector('time').getAttribute("datetime")
-
-return {Headline, Url, Published};
-})""",
-'[data-component="CardList"]')
-
-rand_delay(2)
+    rand_delay(2)
 
 
+if secondo:
+    shot_grabber(0,'https://www.abc.net.au/news/matt-liddy/201998','ABC Matt Liddy', 
+    'ABC','https://www.abc.net.au', "matt-liddy",
+    """
+    Array.from(document.querySelectorAll('.CardLayout_flex__QnHKw'), el => {
+    let Headline = el.querySelector('h3').innerText;
 
-shot_grabber(0,'https://www.abc.net.au/news/mark-doman/2818976','ABC Mark Doman', 
-'ABC','https://www.abc.net.au', "mark_doman",
-"""
-Array.from(document.querySelectorAll('.CardLayout_flex__QnHKw'), el => {
-let Headline = el.querySelector('h3').innerText;
+    let Url = el.querySelector('[data-component="Link"]')['href']
+    let Published = el.querySelector('time').getAttribute("datetime")
 
-let Url = el.querySelector('[data-component="Link"]')['href']
-let Published = el.querySelector('time').getAttribute("datetime")
+    return {Headline, Url, Published};
+    })""",
+    '[data-component="CardList"]')
 
-return {Headline, Url, Published};
-})""",
-'[data-component="CardList"]')
+    rand_delay(2)
 
-rand_delay(2)
+if secondo:
+    shot_grabber(0,'https://www.abc.net.au/news/ben-spraggon/5449826','ABC Ben Spraggon', 
+    'ABC','https://www.abc.net.au', "ben_spraggon",
+    """
+    Array.from(document.querySelectorAll('.CardLayout_flex__QnHKw'), el => {
+    let Headline = el.querySelector('h3').innerText;
 
+    let Url = el.querySelector('[data-component="Link"]')['href']
+    let Published = el.querySelector('time').getAttribute("datetime")
 
-shot_grabber(0,'https://www.abc.net.au/news/thomas-brettell/13785610','ABC Thomas Brettell', 
-'ABC','https://www.abc.net.au', "thomas_brettell",
-"""
-Array.from(document.querySelectorAll('.CardLayout_flex__QnHKw'), el => {
-let Headline = el.querySelector('h3').innerText;
+    return {Headline, Url, Published};
+    })""",
+    '[data-component="CardList"]')
 
-let Url = el.querySelector('[data-component="Link"]')['href']
-let Published = el.querySelector('time').getAttribute("datetime")
-
-return {Headline, Url, Published};
-})""",
-'[data-component="CardList"]')
-
-rand_delay(2)
-
-
-shot_grabber(0,'https://www.abc.net.au/news/katia-shatoba/12532552','ABC Katia Shatoba', 
-'ABC','https://www.abc.net.au', "katia_shatoba",
-"""
-Array.from(document.querySelectorAll('.CardLayout_flex__QnHKw'), el => {
-let Headline = el.querySelector('h3').innerText;
-
-let Url = el.querySelector('[data-component="Link"]')['href']
-let Published = el.querySelector('time').getAttribute("datetime")
-
-return {Headline, Url, Published};
-})""",
-'[data-component="CardList"]')
-
-rand_delay(2)
+    rand_delay(2)
 
 
+if secondo:
+    shot_grabber(0,'https://www.abc.net.au/news/mark-doman/2818976','ABC Mark Doman', 
+    'ABC','https://www.abc.net.au', "mark_doman",
+    """
+    Array.from(document.querySelectorAll('.CardLayout_flex__QnHKw'), el => {
+    let Headline = el.querySelector('h3').innerText;
 
-shot_grabber(0,'https://www.abc.net.au/news/alex-palmer/8752082','ABC Alex Palmer', 
-'ABC','https://www.abc.net.au', "alex_palmer",
-"""
-Array.from(document.querySelectorAll('.CardLayout_flex__QnHKw'), el => {
-let Headline = el.querySelector('h3').innerText;
+    let Url = el.querySelector('[data-component="Link"]')['href']
+    let Published = el.querySelector('time').getAttribute("datetime")
 
-let Url = el.querySelector('[data-component="Link"]')['href']
-let Published = el.querySelector('time').getAttribute("datetime")
+    return {Headline, Url, Published};
+    })""",
+    '[data-component="CardList"]')
 
-return {Headline, Url, Published};
-})""",
-'[data-component="CardList"]')
+    rand_delay(2)
 
-rand_delay(2)
+if not secondo:
+    shot_grabber(0,'https://www.abc.net.au/news/thomas-brettell/13785610','ABC Thomas Brettell', 
+    'ABC','https://www.abc.net.au', "thomas_brettell",
+    """
+    Array.from(document.querySelectorAll('.CardLayout_flex__QnHKw'), el => {
+    let Headline = el.querySelector('h3').innerText;
+
+    let Url = el.querySelector('[data-component="Link"]')['href']
+    let Published = el.querySelector('time').getAttribute("datetime")
+
+    return {Headline, Url, Published};
+    })""",
+    '[data-component="CardList"]')
+
+    rand_delay(2)
+
+if not secondo:
+    shot_grabber(0,'https://www.abc.net.au/news/katia-shatoba/12532552','ABC Katia Shatoba', 
+    'ABC','https://www.abc.net.au', "katia_shatoba",
+    """
+    Array.from(document.querySelectorAll('.CardLayout_flex__QnHKw'), el => {
+    let Headline = el.querySelector('h3').innerText;
+
+    let Url = el.querySelector('[data-component="Link"]')['href']
+    let Published = el.querySelector('time').getAttribute("datetime")
+
+    return {Headline, Url, Published};
+    })""",
+    '[data-component="CardList"]')
+
+    rand_delay(2)
 
 
-shot_grabber(0,'https://www.abc.net.au/news/simon-elvery/5449816','ABC Simon Elvery', 
-'ABC','https://www.abc.net.au', "simon_elvery",
-"""
-Array.from(document.querySelectorAll('.CardLayout_flex__QnHKw'), el => {
-let Headline = el.querySelector('h3').innerText;
+if not secondo:
+    shot_grabber(0,'https://www.abc.net.au/news/alex-palmer/8752082','ABC Alex Palmer', 
+    'ABC','https://www.abc.net.au', "alex_palmer",
+    """
+    Array.from(document.querySelectorAll('.CardLayout_flex__QnHKw'), el => {
+    let Headline = el.querySelector('h3').innerText;
 
-let Url = el.querySelector('[data-component="Link"]')['href']
-let Published = el.querySelector('time').getAttribute("datetime")
+    let Url = el.querySelector('[data-component="Link"]')['href']
+    let Published = el.querySelector('time').getAttribute("datetime")
 
-return {Headline, Url, Published};
-})""",
-'[data-component="CardList"]')
+    return {Headline, Url, Published};
+    })""",
+    '[data-component="CardList"]')
 
-rand_delay(2)
+    rand_delay(2)
+
+if secondo:
+    shot_grabber(0,'https://www.abc.net.au/news/simon-elvery/5449816','ABC Simon Elvery', 
+    'ABC','https://www.abc.net.au', "simon_elvery",
+    """
+    Array.from(document.querySelectorAll('.CardLayout_flex__QnHKw'), el => {
+    let Headline = el.querySelector('h3').innerText;
+
+    let Url = el.querySelector('[data-component="Link"]')['href']
+    let Published = el.querySelector('time').getAttribute("datetime")
+
+    return {Headline, Url, Published};
+    })""",
+    '[data-component="CardList"]')
+
+    rand_delay(2)
 
 
 
