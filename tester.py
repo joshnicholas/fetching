@@ -145,6 +145,30 @@ def shot_grabber(tries, urlo, who,site, siteurl, out_path,  javascript_code, awa
 # '._2VCps _2GpEY')
 
 
+# shot_grabber(0,'https://www.crikey.com.au/author/cam-wilson/','Cam Wilson', 
+# 'Crikey','https://www.crikey.com.au', "cam_wilson",
+# """
+# Array.from(document.querySelectorAll('.article__panel'), el => {
+# let Headline = el.querySelector('h2').innerText;
+# let Url = el.querySelector('a')['href']
+# let Published = el.querySelector('.date').innerText
+# return {Headline, Url, Published};
+# })""",
+# '.container_12')
+
+
+shot_grabber(0,'https://www.scmp.com/infographic/#recentproj','SCMP Graphics', 
+'SCMP','https://www.scmp.com', "scmp_graphics",
+"""
+Array.from(document.querySelectorAll('.half'), el => {
+let Headline = el.querySelector('h2').innerText;
+let Url = el.querySelector('a')['href']
+let Published = el.querySelector('.feed-date').innerText.split("|")
+Published = Published.pop().trim()
+
+return {Headline, Url, Published};
+})""",
+'.featureContainer')
 
 
 

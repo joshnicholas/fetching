@@ -386,4 +386,33 @@ if secondo:
     rand_delay(2)
 
 
+if secondo:
+    shot_grabber(0,'https://www.crikey.com.au/author/rachel-withers/','Rachel Withers', 
+    'Crikey','https://www.crikey.com.au', "rachel_withers",
+    """
+    Array.from(document.querySelectorAll('.article__panel'), el => {
+    let Headline = el.querySelector('h2').innerText;
+    let Url = el.querySelector('a')['href']
+    let Published = el.querySelector('.date').innerText
+    return {Headline, Url, Published};
+    })""",
+    '.container_12')
+
+    rand_delay(2)
+
+
+if not secondo:
+    shot_grabber(0,'https://www.crikey.com.au/author/cam-wilson/','Cam Wilson', 
+    'Crikey','https://www.crikey.com.au', "cam_wilson",
+    """
+    Array.from(document.querySelectorAll('.article__panel'), el => {
+    let Headline = el.querySelector('h2').innerText;
+    let Url = el.querySelector('a')['href']
+    let Published = el.querySelector('.date').innerText
+    return {Headline, Url, Published};
+    })""",
+    '.container_12')
+
+    rand_delay(2)
+
 
