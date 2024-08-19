@@ -270,6 +270,21 @@ if secondo:
 
     rand_delay(2)
 
+if not secondo:
+    shot_grabber(0,'https://www.abc.net.au/news/madi-chwasta/13512978','Madi Chwasta', 
+    'ABC','https://www.abc.net.au', "madi_chwasta",
+    """
+    Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+    let Headline = el.querySelector('h3').innerText;
+
+    let Url = el.querySelector('[data-component="Link"]')['href']
+    let Published = el.querySelector('time').getAttribute("datetime")
+
+    return {Headline, Url, Published};
+    })""",
+    '[data-component="Section"]')
+
+    rand_delay(2)
 
 if secondo:
     shot_grabber(0,'https://www.abc.net.au/news/matt-liddy/201998','ABC Matt Liddy', 
@@ -303,6 +318,21 @@ if secondo:
 
     rand_delay(2)
 
+if secondo:
+    shot_grabber(0,'https://www.abc.net.au/news/brody-smith/104177592','Brody Smith', 
+    'ABC','https://www.abc.net.au', "brody_smith",
+    """
+    Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+    let Headline = el.querySelector('h3').innerText;
+
+    let Url = el.querySelector('[data-component="Link"]')['href']
+    let Published = el.querySelector('time').getAttribute("datetime")
+
+    return {Headline, Url, Published};
+    })""",
+    '[data-component="Section"]')
+
+    rand_delay(2)
 
 if secondo:
     shot_grabber(0,'https://www.abc.net.au/news/mark-doman/2818976','ABC Mark Doman', 
