@@ -157,18 +157,31 @@ def shot_grabber(tries, urlo, who,site, siteurl, out_path,  javascript_code, awa
 # '.container_12')
 
 
-shot_grabber(0,'https://www.scmp.com/infographic/#recentproj','SCMP Graphics', 
-'SCMP','https://www.scmp.com', "scmp_graphics",
+# shot_grabber(0,'https://www.scmp.com/infographic/#recentproj','SCMP Graphics', 
+# 'SCMP','https://www.scmp.com', "scmp_graphics",
+# """
+# Array.from(document.querySelectorAll('.half'), el => {
+# let Headline = el.querySelector('h2').innerText;
+# let Url = el.querySelector('a')['href']
+# let Published = el.querySelector('.feed-date').innerText.split("|")
+# Published = Published.pop().trim()
+
+# return {Headline, Url, Published};
+# })""",
+# '.featureContainer')
+
+
+
+shot_grabber(0,'https://www.abc.net.au/news/alex-lim/103417492','ABC Alex Lim', 
+'ABC','https://www.abc.net.au', "alex_lim",
 """
-Array.from(document.querySelectorAll('.half'), el => {
-let Headline = el.querySelector('h2').innerText;
-let Url = el.querySelector('a')['href']
-let Published = el.querySelector('.feed-date').innerText.split("|")
-Published = Published.pop().trim()
+Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+let Headline = el.querySelector('h3').innerText;
+
+let Url = el.querySelector('[data-component="Link"]')['href']
+let Published = el.querySelector('time').getAttribute("datetime")
 
 return {Headline, Url, Published};
 })""",
-'.featureContainer')
-
-
+'[data-component="Section"]')
 
