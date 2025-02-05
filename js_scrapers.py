@@ -138,75 +138,79 @@ def shot_grabber(tries, urlo, who,site, siteurl, out_path,  javascript_code, awa
 
 
 
+shot_grabber(0,'https://www.reuters.com/graphics/','Reuters Graphics', 
+'Reuters','https://www.reuters.com', "reuters_graphics",
+"""
+Array.from(document.querySelectorAll('[data-testid="StoryCard"]'), el => {
+
+let Headline = el.querySelector('[data-testid="TitleHeading"]').innerText;
+let Url = el.querySelector('[data-testid="TitleLink"]')['href']
+let Published = el.querySelector('[data-testid="DateLineText"]').innerText;
+return {Headline, Url, Published};
+})""",
+'[data-testid="SlicesLayout"]')
+
+rand_delay(2)
+
+
 shot_grabber(0,'https://www.theage.com.au/by/daniel-brettig-p4ywcj','Daniel Brettig', 
 'The Age','https://www.theage.com.au/', "daniel_brettig",
 """
-Array.from(document.querySelectorAll('._3SZUs,.X3yYQ'), el => {
+Array.from(document.querySelectorAll('[data-testid="story-tile"]'), el => {
 let Headline = el.querySelector('h3').innerText;
 let Url = el.querySelector('a')['href']
-let Published = el.querySelector('._2_zR-')['dateTime']
+let Published = el.querySelector('[data-testid="storytile-timestamp"]')['dateTime']
 return {Headline, Url, Published};
 })""",
-'._2VCps _2GpEY')
+'[data-testid="storyset-assetlist"]')
+
 
 rand_delay(2)
 
 if secondo:
     shot_grabber(0,'https://www.smh.com.au/by/sean-kelly-h1d26a','Sean Kelly', 
     'SMH','https://www.smh.com.au/', "sean_kelly",
-    """
-    Array.from(document.querySelectorAll('._3SZUs,.X3yYQ'), el => {
-    let Headline = el.querySelector('h3').innerText;
-    let Url = el.querySelector('a')['href']
-    let Published = el.querySelector('._2_zR-')['dateTime']
-    return {Headline, Url, Published};
-    })""",
-    '._2VCps _2GpEY')
+"""
+Array.from(document.querySelectorAll('[data-testid="story-tile"]'), el => {
+let Headline = el.querySelector('h3').innerText;
+let Url = el.querySelector('a')['href']
+let Published = el.querySelector('[data-testid="storytile-timestamp"]')['dateTime']
+return {Headline, Url, Published};
+})""",
+'[data-testid="storyset-assetlist"]')
 
     rand_delay(2)
 
 if secondo:
     shot_grabber(0,'https://www.smh.com.au/by/the-visual-stories-team-p53776','SMH Visual Stories', 
     'SMH','https://www.smh.com.au/', "smh_visual_stories",
-    """
-    Array.from(document.querySelectorAll('._3SZUs,.X3yYQ'), el => {
-    let Headline = el.querySelector('h3').innerText;
-    let Url = el.querySelector('a')['href']
-    let Published = el.querySelector('._2_zR-')['dateTime']
-    return {Headline, Url, Published};
-    })""",
-    '._2VCps _2GpEY')
+"""
+Array.from(document.querySelectorAll('[data-testid="story-tile"]'), el => {
+let Headline = el.querySelector('h3').innerText;
+let Url = el.querySelector('a')['href']
+let Published = el.querySelector('[data-testid="storytile-timestamp"]')['dateTime']
+return {Headline, Url, Published};
+})""",
+'[data-testid="storyset-assetlist"]')
 
     rand_delay(2)
 
 if not secondo:
     shot_grabber(0,'https://www.smh.com.au/by/craig-butt-hvf8q','Craig Butt', 
     'SMH','https://www.smh.com.au/', "craig_butt",
-    """
-    Array.from(document.querySelectorAll('._3SZUs,.X3yYQ'), el => {
-    let Headline = el.querySelector('h3').innerText;
-    let Url = el.querySelector('a')['href']
-    let Published = el.querySelector('._2_zR-')['dateTime']
-    return {Headline, Url, Published};
-    })""",
-    '._2VCps _2GpEY')
+"""
+Array.from(document.querySelectorAll('[data-testid="story-tile"]'), el => {
+let Headline = el.querySelector('h3').innerText;
+let Url = el.querySelector('a')['href']
+let Published = el.querySelector('[data-testid="storytile-timestamp"]')['dateTime']
+return {Headline, Url, Published};
+})""",
+'[data-testid="storyset-assetlist"]')
 
     rand_delay(2)
 
 
-shot_grabber(0,'https://www.reuters.com/graphics/','Reuters Graphics', 
-'Reuters','https://www.reuters.com', "reuters_graphics",
-"""
-Array.from(document.querySelectorAll('article.svelte-11dknnx,div.hero-row'), el => {
 
-let Headline = el.querySelector('h2,h3').innerText;
-let Url = el.querySelector('a')['href']
-let Published = el.querySelector('small').innerText;
-return {Headline, Url, Published};
-})""",
-'.hero-row clearfix')
-
-rand_delay(2)
 
 if secondo:
     shot_grabber(0,'https://www.scmp.com/infographic/#recentproj','SCMP Graphics', 
@@ -220,7 +224,7 @@ if secondo:
 
     return {Headline, Url, Published};
     })""",
-    '.featureContainer')
+    '[.featureContainer]')
         
     rand_delay(2)
 
