@@ -481,4 +481,30 @@ if not secondo:
 
     rand_delay(2)
 
+shot_grabber(0,'https://www.abc.net.au/news/cody-atkinson/12422846','ABC Cody Atkinson', 
+'ABC','https://www.abc.net.au', "cody_atkinson",
+"""
+Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+let Headline = el.querySelector('h3').innerText;
+
+let Url = el.querySelector('[data-component="Link"]')['href']
+let Published = el.querySelector('time').getAttribute("datetime")
+
+return {Headline, Url, Published};
+})""",
+'[data-component="Section"]')
+
+
+shot_grabber(0,'https://www.abc.net.au/news/sean-lawson/12422842','ABC Sean Lawson', 
+'ABC','https://www.abc.net.au', "sean-lawson",
+"""
+Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+let Headline = el.querySelector('h3').innerText;
+
+let Url = el.querySelector('[data-component="Link"]')['href']
+let Published = el.querySelector('time').getAttribute("datetime")
+
+return {Headline, Url, Published};
+})""",
+'[data-component="Section"]')
 
