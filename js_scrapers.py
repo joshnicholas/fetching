@@ -524,3 +524,16 @@ if secondo:
     return {Headline, Url, Published};
     })""",
     '.container__inner')
+
+if secondo:
+    shot_grabber(0,'https://www.thehindu.com/visual-story/','The Hindu', 
+    'The Hindu','https://www.thehindu.com', "hindu",
+    """
+    Array.from(document.querySelectorAll('.element'), el => {
+    let Headline = el.querySelector('h3').innerText;
+    let Url = el.querySelector('h3').querySelector('a')['href']
+    let Published = ((d => `${String(d.getMonth() + 1).padStart(2, "0")}/${String(d.getDate()).padStart(2, "0")}/${d.getFullYear()}`)(new Date(el.querySelector('.label .time').innerText.split("|")[1].trim())));
+
+    return {Headline, Url, Published};
+    })""",
+    '.container')
