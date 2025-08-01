@@ -22,6 +22,8 @@ secondo = False
 if dayo % 2 == 0:
     secondo = True
 
+print(secondo)
+
 def make_path(out_path):
     already_there = os.listdir("scraped")
 
@@ -452,19 +454,19 @@ if not secondo:
 #     rand_delay(2)
 
 
-if secondo:
-    shot_grabber(0,'https://www.crikey.com.au/author/rachel-withers/','Rachel Withers', 
-    'Crikey','https://www.crikey.com.au', "rachel_withers",
-    """
-    Array.from(document.querySelectorAll('.article__panel'), el => {
-    let Headline = el.querySelector('h2').innerText;
-    let Url = el.querySelector('a')['href']
-    let Published = el.querySelector('.date').innerText
-    return {Headline, Url, Published};
-    })""",
-    '.container_12')
+# if secondo:
+#     shot_grabber(0,'https://www.crikey.com.au/author/rachel-withers/','Rachel Withers', 
+#     'Crikey','https://www.crikey.com.au', "rachel_withers",
+#     """
+#     Array.from(document.querySelectorAll('.article__panel'), el => {
+#     let Headline = el.querySelector('h2').innerText;
+#     let Url = el.querySelector('a')['href']
+#     let Published = el.querySelector('.date').innerText
+#     return {Headline, Url, Published};
+#     })""",
+#     '.container_12')
 
-    rand_delay(2)
+#     rand_delay(2)
 
 
 if not secondo:
@@ -508,3 +510,17 @@ return {Headline, Url, Published};
 })""",
 '[data-component="Section"]')
 
+
+if secondo:
+    shot_grabber(0,'https://www.aljazeera.com/interactives/','Al Jazeera', 
+    'Al Jazeera','https://www.aljazeera.com', "aljazeera",
+    """
+    Array.from(document.querySelectorAll('.themed-featured-posts-list__item'), el => {
+    let Headline = el.querySelector('.article-card__title').innerText;
+
+    let Url = el.querySelector('.article-card__link')['href']
+    let Published = el.querySelector('.date-simple').querySelector('[aria-hidden="true"]').innerText
+
+    return {Headline, Url, Published};
+    })""",
+    '.container__inner')

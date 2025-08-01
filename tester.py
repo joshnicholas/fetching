@@ -187,18 +187,34 @@ def shot_grabber(tries, urlo, who,site, siteurl, out_path,  javascript_code, awa
 
 
 
-shot_grabber(0,'https://www.abc.net.au/news/cody-atkinson/12422846','ABC Cody Atkinson', 
-'ABC','https://www.abc.net.au', "cody_atkinson",
-"""
-Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
-let Headline = el.querySelector('h3').innerText;
+# shot_grabber(0,'https://www.abc.net.au/news/cody-atkinson/12422846','ABC Cody Atkinson', 
+# 'ABC','https://www.abc.net.au', "cody_atkinson",
+# """
+# Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+# let Headline = el.querySelector('h3').innerText;
 
-let Url = el.querySelector('[data-component="Link"]')['href']
-let Published = el.querySelector('time').getAttribute("datetime")
+# let Url = el.querySelector('[data-component="Link"]')['href']
+# let Published = el.querySelector('time').getAttribute("datetime")
 
-return {Headline, Url, Published};
-})""",
-'[data-component="Section"]')
+# return {Headline, Url, Published};
+# })""",
+# '[data-component="Section"]')
+
+
+# shot_grabber(0,'https://www.aljazeera.com/interactives/','Al Jazeera', 
+# 'Al Jazeera','https://www.aljazeera.com', "aljazeera",
+# """
+# Array.from(document.querySelectorAll('.themed-featured-posts-list__item'), el => {
+# let Headline = el.querySelector('.article-card__title').innerText;
+
+# let Url = el.querySelector('.article-card__link')['href']
+# let Published = el.querySelector('.date-simple').querySelector('[aria-hidden="true"]').innerText
+
+# return {Headline, Url, Published};
+# })""",
+# '.container__inner')
+
+
 
 
 # shot_grabber(0,'https://www.abc.net.au/news/sean-lawson/12422842','ABC Sean Lawson', 
@@ -216,4 +232,15 @@ return {Headline, Url, Published};
 
 
 
+shot_grabber(0,'https://www.scmp.com/infographic/#recentproj','SCMP Graphics', 
+'SCMP','https://www.scmp.com', "scmp_graphics",
+"""
+Array.from(document.querySelectorAll('.half'), el => {
+let Headline = el.querySelector('h2').innerText;
+let Url = el.querySelector('a')['href']
+let Published = el.querySelector('.feed-date').innerText.split("|")
+Published = Published.pop().trim()
 
+return {Headline, Url, Published};
+})""",
+'.featureContainer')
