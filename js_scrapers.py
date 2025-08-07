@@ -22,7 +22,13 @@ secondo = False
 if dayo % 2 == 0:
     secondo = True
 
-print(secondo)
+thirdo = False
+if dayo % 3 == 0:
+    thirdo = True
+
+
+def formatter(stringo):
+    return stringo.lower().replace(" ", "_")
 
 def make_path(out_path):
     already_there = os.listdir("scraped")
@@ -469,19 +475,19 @@ if not secondo:
 #     rand_delay(2)
 
 
-if not secondo:
-    shot_grabber(0,'https://www.crikey.com.au/author/cam-wilson/','Cam Wilson', 
-    'Crikey','https://www.crikey.com.au', "cam_wilson",
-    """
-    Array.from(document.querySelectorAll('.article__panel'), el => {
-    let Headline = el.querySelector('h2').innerText;
-    let Url = el.querySelector('a')['href']
-    let Published = el.querySelector('.date').innerText
-    return {Headline, Url, Published};
-    })""",
-    '.container_12')
+# if not secondo:
+#     shot_grabber(0,'https://www.crikey.com.au/author/cam-wilson/','Cam Wilson', 
+#     'Crikey','https://www.crikey.com.au', "cam_wilson",
+#     """
+#     Array.from(document.querySelectorAll('.article__panel'), el => {
+#     let Headline = el.querySelector('h2').innerText;
+#     let Url = el.querySelector('a')['href']
+#     let Published = el.querySelector('.date').innerText
+#     return {Headline, Url, Published};
+#     })""",
+#     '.container_12')
 
-    rand_delay(2)
+#     rand_delay(2)
 
 shot_grabber(0,'https://www.abc.net.au/news/cody-atkinson/12422846','ABC Cody Atkinson', 
 'ABC','https://www.abc.net.au', "cody_atkinson",
@@ -533,6 +539,87 @@ if secondo:
     let Headline = el.querySelector('h3').innerText;
     let Url = el.querySelector('h3').querySelector('a')['href']
     let Published = ((d => `${String(d.getMonth() + 1).padStart(2, "0")}/${String(d.getDate()).padStart(2, "0")}/${d.getFullYear()}`)(new Date(el.querySelector('.label .time').innerText.split("|")[1].trim())));
+
+    return {Headline, Url, Published};
+    })""",
+    '.container')
+
+    shot_grabber(0,'https://www.abc.net.au/news/mary-mcgillivray/103988682','ABC Mary McGillivray', 
+    'ABC','https://www.abc.net.au', "mary_macgillivray",
+    """
+    Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+    let Headline = el.querySelector('h3').innerText;
+
+    let Url = el.querySelector('[data-component="Link"]')['href']
+    let Published = el.querySelector('time').getAttribute("datetime")
+
+    return {Headline, Url, Published};
+    })""",
+    '[data-component="Section"]')
+
+
+if secondo:
+    shot_grabber(0,'https://www.straitstimes.com/authors/carlos-marin','Carlos Marin', 
+    'Straits Times','https://www.straitstimes.com/', "carlos_marin",
+    """
+    Array.from(document.querySelectorAll('[data-testid="custom-link"]'), el => {
+    let Headline = el.querySelector('h4').innerText;
+
+    let Url = el['href']
+    let Published = el.querySelector('[data-testid="paragraph-test-id"]').innerText
+
+    return {Headline, Url, Published};
+    })""",
+    '.container')
+
+    shot_grabber(0,'https://www.straitstimes.com/authors/charlene-chua','Charlene Chua', 
+    'Straits Times','https://www.straitstimes.com/', "charlene_chua",
+    """
+    Array.from(document.querySelectorAll('[data-testid="custom-link"]'), el => {
+    let Headline = el.querySelector('h4').innerText;
+
+    let Url = el['href']
+    let Published = el.querySelector('[data-testid="paragraph-test-id"]').innerText
+
+    return {Headline, Url, Published};
+    })""",
+    '.container')
+
+if thirdo:
+    shot_grabber(0,'https://www.straitstimes.com/authors/alyssa-karla-mungcal','Alyssa Karla Mungcal', 
+    'Straits Times','https://www.straitstimes.com/', formatter('Alyssa Karla Mungcal'),
+    """
+    Array.from(document.querySelectorAll('[data-testid="custom-link"]'), el => {
+    let Headline = el.querySelector('h4').innerText;
+
+    let Url = el['href']
+    let Published = el.querySelector('[data-testid="paragraph-test-id"]').innerText
+
+    return {Headline, Url, Published};
+    })""",
+    '.container')
+
+    shot_grabber(0,'https://www.straitstimes.com/authors/chee-wei-xian','Chee Wei Xian', 
+    'Straits Times','https://www.straitstimes.com/', formatter('Chee Wei Xian'),
+    """
+    Array.from(document.querySelectorAll('[data-testid="custom-link"]'), el => {
+    let Headline = el.querySelector('h4').innerText;
+
+    let Url = el['href']
+    let Published = el.querySelector('[data-testid="paragraph-test-id"]').innerText
+
+    return {Headline, Url, Published};
+    })""",
+    '.container')
+
+    shot_grabber(0,'https://www.straitstimes.com/authors/shannon-teoh-0','Shannon Teoh', 
+    'Straits Times','https://www.straitstimes.com/', formatter('Shannon Teoh'),
+    """
+    Array.from(document.querySelectorAll('[data-testid="custom-link"]'), el => {
+    let Headline = el.querySelector('h4').innerText;
+
+    let Url = el['href']
+    let Published = el.querySelector('[data-testid="paragraph-test-id"]').innerText
 
     return {Headline, Url, Published};
     })""",

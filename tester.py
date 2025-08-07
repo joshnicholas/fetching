@@ -132,6 +132,21 @@ def shot_grabber(tries, urlo, who,site, siteurl, out_path,  javascript_code, awa
             shot_grabber(tries, urlo, who,site, siteurl, out_path,  javascript_code, awaito, wait)
 
 
+def folds(nammo,pathos="scraped"):
+    print(f"{os.getcwd()}/{pathos}/{nammo}")
+    try:
+        os.mkdir(f"{os.getcwd()}/{pathos}/{nammo}")
+        os.mkdir(f"{os.getcwd()}/{pathos}/{nammo}/dumps")
+        print(f"Folder created successfully.")
+    except FileExistsError:
+        print(f"Folder already exist.")
+    except PermissionError:
+        print(f"Permission denied.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+def formatter(stringo):
+    return stringo.lower().replace(" ", "_")
 
 # shot_grabber(0,'https://www.theage.com.au/by/daniel-brettig-p4ywcj','Daniel Brettig', 
 # 'The Age','https://www.theage.com.au/', "daniel_brettig",
@@ -248,14 +263,140 @@ def shot_grabber(tries, urlo, who,site, siteurl, out_path,  javascript_code, awa
 
 
 
-shot_grabber(0,'https://www.thehindu.com/visual-story/','The Hindu', 
-'The Hindu','https://www.thehindu.com', "hindu",
-"""
-Array.from(document.querySelectorAll('.element'), el => {
-let Headline = el.querySelector('h3').innerText;
-let Url = el.querySelector('h3').querySelector('a')['href']
-let Published = ((d => `${String(d.getMonth() + 1).padStart(2, "0")}/${String(d.getDate()).padStart(2, "0")}/${d.getFullYear()}`)(new Date(el.querySelector('.label .time').innerText.split("|")[1].trim())));
+# shot_grabber(0,'https://www.thehindu.com/visual-story/','The Hindu', 
+# 'The Hindu','https://www.thehindu.com', "hindu",
+# """
+# Array.from(document.querySelectorAll('.element'), el => {
+# let Headline = el.querySelector('h3').innerText;
+# let Url = el.querySelector('h3').querySelector('a')['href']
+# let Published = ((d => `${String(d.getMonth() + 1).padStart(2, "0")}/${String(d.getDate()).padStart(2, "0")}/${d.getFullYear()}`)(new Date(el.querySelector('.label .time').innerText.split("|")[1].trim())));
 
-return {Headline, Url, Published};
-})""",
-'.container')
+# return {Headline, Url, Published};
+# })""",
+# '.container')
+
+
+
+# shot_grabber(0,'https://www.abc.net.au/news/mary-mcgillivray/103988682','ABC Mary McGillivray', 
+# 'ABC','https://www.abc.net.au', "mary_macgillivray",
+# """
+# Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+# let Headline = el.querySelector('h3').innerText;
+
+# let Url = el.querySelector('[data-component="Link"]')['href']
+# let Published = el.querySelector('time').getAttribute("datetime")
+
+# return {Headline, Url, Published};
+# })""",
+# '[data-component="Section"]')
+
+
+# shot_grabber(0,'https://www.straitstimes.com/authors/carlos-marin','Carlos Marin', 
+# 'Straits Times','https://www.straitstimes.com/', "carlos_marin",
+# """
+# Array.from(document.querySelectorAll('[data-testid="custom-link"]'), el => {
+# let Headline = el.querySelector('h4').innerText;
+
+# let Url = el['href']
+# let Published = el.querySelector('[data-testid="paragraph-test-id"]').innerText
+
+# return {Headline, Url, Published};
+# })""",
+# '.container')
+
+
+# folds("carlos_marin")
+
+# folds("charlene_chua")
+
+# shot_grabber(0,'https://www.straitstimes.com/authors/charlene-chua','Charlene Chua', 
+# 'Straits Times','https://www.straitstimes.com/', "charlene_chua",
+# """
+# Array.from(document.querySelectorAll('[data-testid="custom-link"]'), el => {
+# let Headline = el.querySelector('h4').innerText;
+
+# let Url = el['href']
+# let Published = el.querySelector('[data-testid="paragraph-test-id"]').innerText
+
+# return {Headline, Url, Published};
+# })""",
+# '.container')
+
+# folds(formatter('Chee Wei Xian'))
+
+# shot_grabber(0,'https://www.straitstimes.com/authors/chee-wei-xian','Chee Wei Xian', 
+# 'Straits Times','https://www.straitstimes.com/', formatter('Chee Wei Xian'),
+# """
+# Array.from(document.querySelectorAll('[data-testid="custom-link"]'), el => {
+# let Headline = el.querySelector('h4').innerText;
+
+# let Url = el['href']
+# let Published = el.querySelector('[data-testid="paragraph-test-id"]').innerText
+
+# return {Headline, Url, Published};
+# })""",
+# '.container')
+
+
+
+# folds(formatter('Alyssa Karla Mungcal'))
+
+# shot_grabber(0,'https://www.straitstimes.com/authors/alyssa-karla-mungcal','Alyssa Karla Mungcal', 
+# 'Straits Times','https://www.straitstimes.com/', formatter('Alyssa Karla Mungcal'),
+# """
+# Array.from(document.querySelectorAll('[data-testid="custom-link"]'), el => {
+# let Headline = el.querySelector('h4').innerText;
+
+# let Url = el['href']
+# let Published = el.querySelector('[data-testid="paragraph-test-id"]').innerText
+
+# return {Headline, Url, Published};
+# })""",
+# '.container')
+
+
+# folds(formatter('Shannon Teoh'))
+
+# shot_grabber(0,'https://www.straitstimes.com/authors/shannon-teoh-0','Shannon Teoh', 
+# 'Straits Times','https://www.straitstimes.com/', formatter('Shannon Teoh'),
+# """
+# Array.from(document.querySelectorAll('[data-testid="custom-link"]'), el => {
+# let Headline = el.querySelector('h4').innerText;
+
+# let Url = el['href']
+# let Published = el.querySelector('[data-testid="paragraph-test-id"]').innerText
+
+# return {Headline, Url, Published};
+# })""",
+# '.container')
+
+
+# folds(formatter('Shannon Teoh'))
+
+# shot_grabber(0,'https://www.straitstimes.com/authors/shannon-teoh-0','Shannon Teoh', 
+# 'Straits Times','https://www.straitstimes.com/', formatter('Shannon Teoh'),
+# """
+# Array.from(document.querySelectorAll('[data-testid="custom-link"]'), el => {
+# let Headline = el.querySelector('h4').innerText;
+
+# let Url = el['href']
+# let Published = el.querySelector('[data-testid="paragraph-test-id"]').innerText
+
+# return {Headline, Url, Published};
+# })""",
+# '.container')
+
+# shot_grabber(0,'https://www.crikey.com.au/author/cam-wilson/','Cam Wilson', 
+# 'Crikey','https://www.crikey.com.au', "cam_wilson",
+# """
+# Array.from(document.querySelectorAll('article'), el => {
+# let Headline = el.querySelector('a').innerText;
+# let Url = el.querySelector('a')['href']
+# let Published = el.querySelector('.date').innerText
+# return {Headline, Url, Published};
+# })""",
+# '.mb-8')
+
+
+
+
