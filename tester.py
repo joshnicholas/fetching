@@ -9,6 +9,7 @@ import pandas as pd
 
 import pathlib
 import os 
+import random
 
 pathos = pathlib.Path(__file__).parent
 os.chdir(pathos)
@@ -16,6 +17,28 @@ os.chdir(pathos)
 today = datetime.datetime.now()
 scrape_time = today.astimezone(pytz.timezone("Australia/Brisbane"))
 format_scrape_time = datetime.datetime.strftime(scrape_time, "%Y_%m_%d_%H")
+
+def delayer(disto = 'mid'):
+    bottom = 0
+    top = 100
+    mid = 50
+
+    mode = mid
+
+    if disto == 'every':
+        return True
+
+    if disto == 'mid':
+        mode = mid
+    elif disto == 'low':
+        mode = top * 0.25
+    elif disto == 'high':
+        mode = top * 0.75
+
+    if random.triangular(bottom, top, mode) < mid:
+        return True
+    else:
+        return False
 
 def make_path(out_path):
     already_there = os.listdir("scraped")
@@ -64,73 +87,75 @@ def make_feed(frame, who,site, siteurl, out_path):
     rssfeed  = fg.rss_str(pretty=True)
     fg.rss_file(f'scraped/{out_path}/rss.xml') 
 
-def shot_grabber(tries, urlo, who,site, siteurl, out_path,  javascript_code, awaito, wait=False):
-    print(f"\nScraping {who}")
-    make_path(out_path)
-    # tries = 0
-    try:
-        with sync_playwright() as p:
-            browser = p.firefox.launch()
-            # browser = p.chromium.launch()
+def shot_grabber(tries, urlo, who,site, siteurl, out_path,  javascript_code, awaito, wait=False, delayo='high'):
+    if delayer(delayo):
+        print(f"\nScraping {who}")
+        make_path(out_path)
+        # tries = 0
+        try:
+            with sync_playwright() as p:
+                browser = p.firefox.launch()
+                # browser = p.chromium.launch()
 
-            context = browser.new_context()
+                context = browser.new_context()
 
-            page = context.new_page()
+                page = context.new_page()
 
 
-            page.goto(urlo)
+                page.goto(urlo)
 
-            if wait:
-                print('Waiting')
-                waiting_around = page.locator(awaito)
-                waiting_around.wait_for()
-                print("Waited")
+                if wait:
+                    print('Waiting')
+                    waiting_around = page.locator(awaito)
+                    waiting_around.wait_for()
+                    print("Waited")
 
-            resulto = page.evaluate(javascript_code)
+                resulto = page.evaluate(javascript_code)
 
-            # print("Resulto: ", resulto)
+                # print("Resulto: ", resulto)
 
-            context.close()
-            browser.close()
+                context.close()
+                browser.close()
 
-            frame = pd.DataFrame.from_records(resulto)
+                frame = pd.DataFrame.from_records(resulto)
 
-            frame = frame[:10]
+                frame = frame[:10]
 
-            frame['Who'] = who
+                frame['Who'] = who
 
-            frame['Site'] = site
+                frame['Site'] = site
 
-            frame['Siteurl'] = siteurl
+                frame['Siteurl'] = siteurl
 
-            frame['scraped_datetime']= format_scrape_time 
+                frame['scraped_datetime']= format_scrape_time 
 
-            frame = frame[['Who', 'scraped_datetime', 'Headline', 'Url', 'Site', 'Siteurl', 'Published']]
+                frame = frame[['Who', 'scraped_datetime', 'Headline', 'Url', 'Site', 'Siteurl', 'Published']]
 
-            frame['Published']= pd.to_datetime(frame['Published'], utc=True)
-            frame.sort_values(by=['Published'], ascending=False, inplace=True)
-            frame['Published'] = frame['Published'].dt.strftime("%Y_%m_%d_%H")
+                frame['Published']= pd.to_datetime(frame['Published'], utc=True)
+                frame.sort_values(by=['Published'], ascending=False, inplace=True)
+                frame['Published'] = frame['Published'].dt.strftime("%Y_%m_%d_%H")
 
-            dumper(f'scraped/{out_path}', f"latest", frame)
-            dumper(f'scraped/{out_path}/dumps', f"{format_scrape_time }", frame)
+                dumper(f'scraped/{out_path}', f"latest", frame)
+                dumper(f'scraped/{out_path}/dumps', f"{format_scrape_time }", frame)
 
+                rand_delay(5)
+
+                make_feed(frame,who,site, siteurl, out_path)
+                # return frame 
+
+        except Exception as e:
+            tries += 1
+            print("Tries: ", tries)
+            # context.close()
+            # browser.close()
+            print(e)
             rand_delay(5)
+            if tries <= 3:
+            # if e == 'Timeout 30000ms exceeded.' and tries <= 3:
+                print("Trying again")
+                shot_grabber(tries, urlo, who,site, siteurl, out_path,  javascript_code, awaito, wait, delayo)
 
-            make_feed(frame,who,site, siteurl, out_path)
-            # return frame 
-
-    except Exception as e:
-        tries += 1
-        print("Tries: ", tries)
-        # context.close()
-        # browser.close()
-        print(e)
-        rand_delay(5)
-        if tries <= 3:
-        # if e == 'Timeout 30000ms exceeded.' and tries <= 3:
-            print("Trying again")
-            shot_grabber(tries, urlo, who,site, siteurl, out_path,  javascript_code, awaito, wait)
-
+    rand_delay(2)
 
 def folds(nammo,pathos="scraped"):
     print(f"{os.getcwd()}/{pathos}/{nammo}")
@@ -400,3 +425,32 @@ def formatter(stringo):
 
 
 
+
+
+# shot_grabber(0,'https://www.abc.net.au/news/julian-fell/13905936','Julian Fell', 
+# 'ABC','https://www.abc.net.au', "julian_fell",
+# """
+# Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+# let Headline = el.querySelector('h3').innerText;
+
+# let Url = el.querySelector('[data-component="Link"]')['href']
+# let Published = el.querySelector('time').getAttribute("datetime")
+
+# return {Headline, Url, Published};
+# })""",
+# '[data-component="Section"]',
+# False, 'high')
+
+
+# shot_grabber(0,'https://www.abc.net.au/news/sean-lawson/12422842','ABC Sean Lawson', 
+# 'ABC','https://www.abc.net.au', "sean-lawson",
+# """
+# Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+# let Headline = el.querySelector('h3').innerText;
+
+# let Url = el.querySelector('[data-component="Link"]')['href']
+# let Published = el.querySelector('time').getAttribute("datetime")
+
+# return {Headline, Url, Published};
+# })""",
+# '[data-component="Section"]')
