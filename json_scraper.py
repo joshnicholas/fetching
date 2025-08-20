@@ -98,6 +98,7 @@ def json_grabber(pathos, out_path):
     dumper(f'scraped/{out_path}/dumps', f"{format_scrape_time }", datah)
 
     datah = datah[:20]
+    # dumper(f'scraped/{out_path}', f"latest", datah)
 
     # pp(datah)
 
