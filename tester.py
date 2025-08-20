@@ -454,3 +454,17 @@ def formatter(stringo):
 # return {Headline, Url, Published};
 # })""",
 # '[data-component="Section"]')
+
+
+# shot_grabber(0,'https://www.smh.com.au/by/the-visual-stories-team-p53776','SMH Visual Stories', 
+# 'SMH','https://www.smh.com.au/', "smh_visual_stories",
+# """
+# Array.from(document.querySelectorAll('[data-testid="story-tile"]'), el => {
+#   let Headline = el.querySelector('h3')?.innerText;
+#   let Url = el.querySelector('a')?.href;
+#   let Published = el.querySelector('[data-testid="storytile-timestamp"]')?.dateTime;
+#   return { Headline, Url, Published };
+# }).filter(item => item.Published)
+# """,
+# '[data-testid="storyset-assetlist"]',
+# False, 'mid')

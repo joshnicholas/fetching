@@ -7,6 +7,9 @@ import datetime
 import pytz
 import pandas as pd
 import random
+import re
+import requests
+import json
 
 import pathlib
 import os 
@@ -172,6 +175,45 @@ def shot_grabber(tries, urlo, who,site, siteurl, out_path,  javascript_code, awa
 
 
 
+INVALID_XML_RE = re.compile(
+    r"[^\x09\x0A\x0D\x20-\uD7FF\uE000-\uFFFD\U00010000-\U0010FFFF]"
+)
+
+def clean_xml_text(text):
+    if isinstance(text, str):
+        return INVALID_XML_RE.sub("", text)
+    return text
+
+
+def json_grabber(pathos, out_path):
+
+    r = requests.get(pathos)
+    jsony = json.loads(r.text)
+
+    datah = pd.DataFrame(jsony['articles'])
+
+    # ['publication', 'twitterHandle', 'blueSkyHandle', 'url', 'headline', 'image', 'timestamp', 'isTemplated', 'mastodonHandle']
+
+    datah = datah.loc[datah['timestamp'] != 'none']
+    datah['timestamp'] = pd.to_datetime(datah['timestamp'], errors='coerce')
+    datah.dropna(subset=['timestamp'], inplace=True)
+    datah['timestamp'] = datah['timestamp'].dt.strftime("%Y_%m_%d_%H")
+
+    datah.dropna(subset=['headline', 'timestamp', 'publication', 'url'], inplace=True)
+
+    datah.rename(columns={'publication': "Who", 'timestamp': "Published", 'headline': "Headline", 'url': "Url"}, inplace=True)
+    datah = datah[['Who', 'Url', 'Headline', 'Published']]
+
+    for col in datah.columns.tolist():
+        datah[col] = datah[col].apply(clean_xml_text)
+
+    dumper(f'scraped/{out_path}', f"latest", datah)
+    dumper(f'scraped/{out_path}/dumps', f"{format_scrape_time }", datah)
+
+    make_feed(datah, "Interactives","Interactives", "https://github.com/sammorrisdesign/interactive-feed", out_path)
+
+
+
 shot_grabber(0,'https://www.reuters.com/graphics/','Reuters Graphics', 
 'Reuters','https://www.reuters.com', "reuters_graphics",
 """
@@ -219,11 +261,12 @@ shot_grabber(0,'https://www.smh.com.au/by/the-visual-stories-team-p53776','SMH V
 'SMH','https://www.smh.com.au/', "smh_visual_stories",
 """
 Array.from(document.querySelectorAll('[data-testid="story-tile"]'), el => {
-let Headline = el.querySelector('h3').innerText;
-let Url = el.querySelector('a')['href']
-let Published = el.querySelector('[data-testid="storytile-timestamp"]')['dateTime']
-return {Headline, Url, Published};
-})""",
+  let Headline = el.querySelector('h3')?.innerText;
+  let Url = el.querySelector('a')?.href;
+  let Published = el.querySelector('[data-testid="storytile-timestamp"]')?.dateTime;
+  return { Headline, Url, Published };
+}).filter(item => item.Published)
+""",
 '[data-testid="storyset-assetlist"]',
 False, 'mid')
 
@@ -668,3 +711,7 @@ return {Headline, Url, Published};
 })""",
 '.container',
 False, 'high')
+
+
+
+json_grabber('https://raw.githubusercontent.com/sammorrisdesign/interactive-feed/refs/heads/main/data/all.json', 'bsky_interactives')
