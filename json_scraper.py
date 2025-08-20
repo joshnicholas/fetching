@@ -84,6 +84,8 @@ def json_grabber(pathos, out_path):
     datah.dropna(subset=['timestamp'], inplace=True)
     datah['timestamp'] = datah['timestamp'].dt.strftime("%Y_%m_%d_%H")
 
+    datah.sort_values(by=['timestamp'], ascending=False, inplace=True)
+
     datah.dropna(subset=['headline', 'timestamp', 'publication', 'url'], inplace=True)
 
     datah.rename(columns={'publication': "Who", 'timestamp': "Published", 'headline': "Headline", 'url': "Url"}, inplace=True)
@@ -95,12 +97,14 @@ def json_grabber(pathos, out_path):
     dumper(f'scraped/{out_path}', f"latest", datah)
     dumper(f'scraped/{out_path}/dumps', f"{format_scrape_time }", datah)
 
+    datah = datah[:20]
+
+    # pp(datah)
+
     make_feed(datah, "Interactives","Interactives", "https://github.com/sammorrisdesign/interactive-feed", out_path)
 
-    pp(datah)
 
 json_grabber('https://raw.githubusercontent.com/sammorrisdesign/interactive-feed/refs/heads/main/data/all.json', 'bsky_interactives')
 
 # %%
 
-def shot_grabber(tries, urlo, who,site, siteurl, out_path,  javascript_code, awaito, wait=False, delayo='high'):
