@@ -385,7 +385,7 @@ let Published = el.querySelector('time').getAttribute("datetime")
 return {Headline, Url, Published};
 })""",
 '[data-component="Section"]',
-False, 'high')
+False, 'mid')
 
 
 
