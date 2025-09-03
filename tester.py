@@ -468,3 +468,19 @@ def formatter(stringo):
 # """,
 # '[data-testid="storyset-assetlist"]',
 # False, 'mid')
+
+
+
+# shot_grabber(0,'https://www.abc.net.au/news/jack-fisher/9808188','ABC Jack Fisher', 
+# 'ABC','https://www.abc.net.au', "jack_fisher",
+# """
+# Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+# let Headline = el.querySelector('h3').innerText;
+
+# let Url = el.querySelector('[data-component="Link"]')['href']
+# let Published = el.querySelector('time').getAttribute("datetime")
+
+# return {Headline, Url, Published};
+# })""",
+# '[data-component="Section"]',
+# False, 'every')

@@ -232,7 +232,7 @@ let Published = el.querySelector('[data-testid="DateLineText"]').innerText;
 return {Headline, Url, Published};
 })""",
 '[data-testid="SlicesLayout"]',
-False, 'mid')
+False, 'low')
 
 
 
@@ -246,7 +246,7 @@ let Published = el.querySelector('[data-testid="storytile-timestamp"]')['dateTim
 return {Headline, Url, Published};
 })""",
 '[data-testid="storyset-assetlist"]',
-False, 'mid')
+False, 'low')
 
 
 
@@ -275,7 +275,7 @@ Array.from(document.querySelectorAll('[data-testid="story-tile"]'), el => {
 }).filter(item => item.Published)
 """,
 '[data-testid="storyset-assetlist"]',
-False, 'mid')
+False, 'low')
 
 
 
@@ -356,6 +356,20 @@ return {Headline, Url, Published};
 False, 'high')
 
 
+shot_grabber(0,'https://www.abc.net.au/news/jack-fisher/9808188','ABC Jack Fisher', 
+'ABC','https://www.abc.net.au', "jack_fisher",
+"""
+Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+let Headline = el.querySelector('h3').innerText;
+
+let Url = el.querySelector('[data-component="Link"]')['href']
+let Published = el.querySelector('time').getAttribute("datetime")
+
+return {Headline, Url, Published};
+})""",
+'[data-component="Section"]',
+False, 'high')
+
 
 shot_grabber(0,'https://www.abc.net.au/news/inga-ting/8749946','ABC Inga Ting', 
 'ABC','https://www.abc.net.au', "inga_ting",
@@ -385,7 +399,7 @@ let Published = el.querySelector('time').getAttribute("datetime")
 return {Headline, Url, Published};
 })""",
 '[data-component="Section"]',
-False, 'mid')
+False, 'low')
 
 
 
