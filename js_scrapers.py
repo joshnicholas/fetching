@@ -482,6 +482,37 @@ return {Headline, Url, Published};
 False, 'high')
 
 
+
+shot_grabber(0,'https://www.abc.net.au/news/jonathan-hair/6531486',"Jonathan Hair", 
+'ABC','https://www.abc.net.au', formatter("Jonathan Hair"),
+"""
+Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+let Headline = el.querySelector('h3').innerText;
+
+let Url = el.querySelector('[data-component="Link"]')['href']
+let Published = el.querySelector('time').getAttribute("datetime")
+
+return {Headline, Url, Published};
+})""",
+'[data-component="Section"]',
+False, 'low')
+
+shot_grabber(0,'https://www.abc.net.au/news/maryanne-taouk/12481846',"Maryanne Taouk", 
+'ABC','https://www.abc.net.au', formatter("Maryanne Taouk"),
+"""
+Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+let Headline = el.querySelector('h3').innerText;
+
+let Url = el.querySelector('[data-component="Link"]')['href']
+let Published = el.querySelector('time').getAttribute("datetime")
+
+return {Headline, Url, Published};
+})""",
+'[data-component="Section"]',
+False, 'low')
+
+
+
 shot_grabber(0,'https://www.abc.net.au/news/katia-shatoba/12532552','ABC Katia Shatoba', 
 'ABC','https://www.abc.net.au', "katia_shatoba",
 """
