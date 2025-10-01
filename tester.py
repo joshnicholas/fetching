@@ -513,3 +513,18 @@ def formatter(stringo):
 # })""",
 # '[data-component="Section"]',
 # False, 'every')
+
+
+# shot_grabber(0,'https://www.abc.net.au/news/sharon-gordon/101657982',"Sharon Gordon", 
+# 'ABC','https://www.abc.net.au', formatter("Sharon Gordon"),
+# """
+# Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+# let Headline = el.querySelector('h3').innerText;
+
+# let Url = el.querySelector('[data-component="Link"]')['href']
+# let Published = el.querySelector('time').getAttribute("datetime")
+
+# return {Headline, Url, Published};
+# })""",
+# '[data-component="Section"]',
+# False, 'low')

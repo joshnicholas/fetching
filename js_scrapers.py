@@ -283,13 +283,13 @@ shot_grabber(0,'https://www.smh.com.au/by/craig-butt-hvf8q','Craig Butt',
 'SMH','https://www.smh.com.au/', "craig_butt",
 """
 Array.from(document.querySelectorAll('[data-testid="story-tile"]'), el => {
-let Headline = el.querySelector('h3').innerText;
-let Url = el.querySelector('a')['href']
-let Published = el.querySelector('[data-testid="storytile-timestamp"]')['dateTime']
-return {Headline, Url, Published};
-})""",
+  let Headline = el.querySelector('h3')?.innerText;
+  let Url = el.querySelector('a')?.href;
+  let Published = el.querySelector('[data-testid="storytile-timestamp"]')?.dateTime;
+  return { Headline, Url, Published };
+}).filter(item => item.Published)""",
 '[data-testid="storyset-assetlist"]',
-False, 'mid')
+False, 'low')
 
 
 
@@ -338,7 +338,7 @@ let Published = el.querySelector('time').getAttribute("datetime")
 return {Headline, Url, Published};
 })""",
 '[data-component="Section"]',
-False, 'high')
+False, 'mid')
 
 
 shot_grabber(0,'https://www.abc.net.au/news/alex-lim/103417492','ABC Alex Lim', 
@@ -353,7 +353,7 @@ let Published = el.querySelector('time').getAttribute("datetime")
 return {Headline, Url, Published};
 })""",
 '[data-component="Section"]',
-False, 'high')
+False, 'low')
 
 
 shot_grabber(0,'https://www.abc.net.au/news/jack-fisher/9808188','ABC Jack Fisher', 
@@ -402,6 +402,20 @@ return {Headline, Url, Published};
 False, 'low')
 
 
+shot_grabber(0,'https://www.abc.net.au/news/sharon-gordon/101657982',"Sharon Gordon", 
+'ABC','https://www.abc.net.au', formatter("Sharon Gordon"),
+"""
+Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+let Headline = el.querySelector('h3').innerText;
+
+let Url = el.querySelector('[data-component="Link"]')['href']
+let Published = el.querySelector('time').getAttribute("datetime")
+
+return {Headline, Url, Published};
+})""",
+'[data-component="Section"]',
+False, 'low')
+
 
 shot_grabber(0,'https://www.abc.net.au/news/matt-liddy/201998','ABC Matt Liddy', 
 'ABC','https://www.abc.net.au', "matt-liddy",
@@ -415,7 +429,7 @@ let Published = el.querySelector('time').getAttribute("datetime")
 return {Headline, Url, Published};
 })""",
 '[data-component="Section"]',
-False, 'high')
+False, 'mid')
 
 
 
@@ -463,7 +477,7 @@ let Published = el.querySelector('time').getAttribute("datetime")
 return {Headline, Url, Published};
 })""",
 '[data-component="Section"]',
-False, 'high')
+False, 'mid')
 
 
 
@@ -632,7 +646,7 @@ let Published = el.querySelector('time').getAttribute("datetime")
 return {Headline, Url, Published};
 })""",
 '[data-component="Section"]',
-False, 'high')
+False, 'mid')
 
 
 shot_grabber(0,'https://www.abc.net.au/news/sean-lawson/12422842','ABC Sean Lawson', 
@@ -647,7 +661,7 @@ let Published = el.querySelector('time').getAttribute("datetime")
 return {Headline, Url, Published};
 })""",
 '[data-component="Section"]',
-False, 'high')
+False, 'mid')
 
 
 shot_grabber(0,'https://www.aljazeera.com/interactives/','Al Jazeera', 
