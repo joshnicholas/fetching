@@ -528,3 +528,17 @@ def formatter(stringo):
 # })""",
 # '[data-component="Section"]',
 # False, 'low')
+
+
+shot_grabber(0,'https://www.smh.com.au/by/richard-lama-h0x0vk','Richard Lama', 
+'SMH','https://www.smh.com.au/', formatter("Richard Lama"),
+"""
+Array.from(document.querySelectorAll('[data-testid="story-tile"]'), el => {
+  let Headline = el.querySelector('h3')?.innerText;
+  let Url = el.querySelector('a')?.href;
+  let Published = el.querySelector('[data-testid="storytile-timestamp"]')?.dateTime;
+  return { Headline, Url, Published };
+}).filter(item => item.Published)
+""",
+'[data-testid="storyset-assetlist"]',
+False, 'high')

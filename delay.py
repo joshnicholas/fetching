@@ -59,8 +59,8 @@ pp(cat)
 
 # %%
 
-# sns.kdeplot(cat, x='Value', hue='Variable')
-# sns.countplot(cat, x='Value', hue='Variable')
+sns.kdeplot(cat, x='Value', hue='Variable')
+sns.countplot(cat, x='Value', hue='Variable')
 
 # %%
 
