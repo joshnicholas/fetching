@@ -11,6 +11,8 @@ import pathlib
 import os 
 import random
 
+from sudulunu.helpers import pp 
+
 pathos = pathlib.Path(__file__).parent
 os.chdir(pathos)
 
@@ -143,7 +145,10 @@ def shot_grabber(tries, urlo, who,site, siteurl, out_path,  javascript_code, awa
                 make_feed(frame,who,site, siteurl, out_path)
                 # return frame 
 
+                pp(frame)
+
         except Exception as e:
+            print(e)
             tries += 1
             print("Tries: ", tries)
             # context.close()
@@ -530,15 +535,41 @@ def formatter(stringo):
 # False, 'low')
 
 
-shot_grabber(0,'https://www.smh.com.au/by/richard-lama-h0x0vk','Richard Lama', 
-'SMH','https://www.smh.com.au/', formatter("Richard Lama"),
+# shot_grabber(0,'https://www.smh.com.au/by/richard-lama-h0x0vk','Richard Lama', 
+# 'SMH','https://www.smh.com.au/', formatter("Richard Lama"),
+# """
+# Array.from(document.querySelectorAll('[data-testid="story-tile"]'), el => {
+#   let Headline = el.querySelector('h3')?.innerText;
+#   let Url = el.querySelector('a')?.href;
+#   let Published = el.querySelector('[data-testid="storytile-timestamp"]')?.dateTime;
+#   return { Headline, Url, Published };
+# }).filter(item => item.Published)
+# """,
+# '[data-testid="storyset-assetlist"]',
+# False, 'high')
+
+
+shot_grabber(0,'https://www.abc.net.au/news/topic/history',"ABC History", 
+'ABC','https://www.abc.net.au', formatter("ABC History"),
 """
-Array.from(document.querySelectorAll('[data-testid="story-tile"]'), el => {
-  let Headline = el.querySelector('h3')?.innerText;
-  let Url = el.querySelector('a')?.href;
-  let Published = el.querySelector('[data-testid="storytile-timestamp"]')?.dateTime;
-  return { Headline, Url, Published };
-}).filter(item => item.Published)
-""",
-'[data-testid="storyset-assetlist"]',
-False, 'high')
+Array.from(document.querySelectorAll('.FeaturedCollection_cardList__lnpB_'), el => {
+let Headline = el.querySelector('h3').innerText;
+
+let Url = el.querySelector('[data-component="Link"]')['href']
+let Published = "2025-12-25"
+
+return {Headline, Url, Published};
+})""",
+'[data-component="Section"]',
+False, 'low')
+
+
+
+# Array.from(document.querySelectorAll('.FeaturedCollection_cardList__lnpB_'), el => {
+# let Headline = el.querySelector('h3').innerText;
+
+# let Url = el.querySelector('[data-component="Link"]')['href']
+
+
+# return {Headline, Url};
+# })

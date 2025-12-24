@@ -275,7 +275,7 @@ Array.from(document.querySelectorAll('[data-testid="story-tile"]'), el => {
 }).filter(item => item.Published)
 """,
 '[data-testid="storyset-assetlist"]',
-False, 'low')
+False, 'mid')
 
 
 
@@ -368,7 +368,7 @@ let Published = el.querySelector('time').getAttribute("datetime")
 return {Headline, Url, Published};
 })""",
 '[data-component="Section"]',
-False, 'high')
+False, 'mid')
 
 
 shot_grabber(0,'https://www.abc.net.au/news/inga-ting/8749946','ABC Inga Ting', 
@@ -383,7 +383,7 @@ let Published = el.querySelector('time').getAttribute("datetime")
 return {Headline, Url, Published};
 })""",
 '[data-component="Section"]',
-False, 'high')
+False, 'mid')
 
 
 
@@ -399,7 +399,7 @@ let Published = el.querySelector('time').getAttribute("datetime")
 return {Headline, Url, Published};
 })""",
 '[data-component="Section"]',
-False, 'low')
+False, 'mid')
 
 
 shot_grabber(0,'https://www.abc.net.au/news/sharon-gordon/101657982',"Sharon Gordon", 
@@ -794,3 +794,19 @@ False, 'high')
 
 
 json_grabber('https://raw.githubusercontent.com/sammorrisdesign/interactive-feed/refs/heads/main/data/all.json', 'bsky_interactives')
+
+
+
+shot_grabber(0,'https://www.abc.net.au/news/topic/history',"ABC History", 
+'ABC','https://www.abc.net.au', formatter("ABC History"),
+"""
+Array.from(document.querySelectorAll('.FeaturedCollection_cardList__lnpB_'), el => {
+let Headline = el.querySelector('h3').innerText;
+
+let Url = el.querySelector('[data-component="Link"]')['href']
+let Published = "2025-12-25"
+
+return {Headline, Url, Published};
+})""",
+'[data-component="Section"]',
+False, 'mid')
