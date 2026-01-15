@@ -19,29 +19,6 @@ def rand_delay(num):
 #   print(rando)
   time.sleep(rando)
 
-def read_rss_feed(url):
-    try:
-
-        feed = feedparser.parse(url)
-        
-
-        print(f"Feed Title: {feed.feed.title}")
-        print(f"Feed Description: {feed.feed.description}")
-        print(f"Feed Link: {feed.feed.link}")
-        print(f"Last Updated: {feed.feed.updated}")
-        print("-" * 50)
-        
-
-        for i, entry in enumerate(feed.entries[:10], 1):
-
-            print(f"\nEntry {i}:")
-            print(f"Title: {entry.title}")
-            print(f"Link: {entry.link}")
-            print(f"Published: {entry.published}")
-            print(f"Summary: {entry.summary[:200]}...")
-            
-    except Exception as e:
-        print(f"Error reading feed: {e}")
 
 headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36",
 'Accept-Language': "en-GB,en-US;q=0.9,en;q=0.8",
@@ -50,9 +27,6 @@ headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleW
 
 # %%
 
-# read_rss_feed('https://www.bom.gov.au/fwo/IDZ00061.warnings_land_nsw.xml')
-
-urlo = 'https://www.bom.gov.au/fwo/IDZ00054.warnings_nsw.xml'
 
 def make_feed(frame, who,site, siteurl, out_path):
 
