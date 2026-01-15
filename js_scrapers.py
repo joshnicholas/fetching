@@ -810,3 +810,5 @@ return {Headline, Url, Published};
 })""",
 '[data-component="Section"]',
 False, 'mid')
+
+import bom_feeds
