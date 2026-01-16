@@ -219,7 +219,11 @@ def json_grabber(pathos, out_path):
 
     make_feed(datah, "Interactives","Interactives", "https://github.com/sammorrisdesign/interactive-feed", out_path)
 
-
+try:
+    import bom_feeds
+except Exception as e:
+    print(e)
+    pass
 
 shot_grabber(0,'https://www.reuters.com/graphics/','Reuters Graphics', 
 'Reuters','https://www.reuters.com', "reuters_graphics",
@@ -800,15 +804,16 @@ json_grabber('https://raw.githubusercontent.com/sammorrisdesign/interactive-feed
 shot_grabber(0,'https://www.abc.net.au/news/topic/history',"ABC History", 
 'ABC','https://www.abc.net.au', formatter("ABC History"),
 """
-Array.from(document.querySelectorAll('.FeaturedCollection_cardList__lnpB_'), el => {
-let Headline = el.querySelector('h3').innerText;
+const container = document.querySelector('[data-component="FeaturedCollection"]');
 
-let Url = el.querySelector('[data-component="Link"]')['href']
-let Published = "2025-12-25"
+Array.from(container.querySelectorAll('li'), el => {
+  let Headline = el.querySelector('h3')?.innerText;
+  let Url = el.querySelector('[data-component="Link"]')?.href;
+  let Published = "2025-12-25";
 
-return {Headline, Url, Published};
-})""",
+  return { Headline, Url, Published };
+}).filter(item => item.Headline);""",
 '[data-component="Section"]',
 False, 'mid')
 
-import bom_feeds
+
