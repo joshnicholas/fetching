@@ -3,3 +3,6 @@ playwright
 feedgen
 requests
 feedparser
+dateparser
+pytz
+dateutil
