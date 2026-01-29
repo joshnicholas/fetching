@@ -549,20 +549,20 @@ def formatter(stringo):
 # False, 'high')
 
 
-shot_grabber(0,'https://www.abc.net.au/news/topic/history',"ABC History", 
-'ABC','https://www.abc.net.au', formatter("ABC History"),
-"""
-const container = document.querySelector('[data-component="FeaturedCollection"]');
+# shot_grabber(0,'https://www.abc.net.au/news/topic/history',"ABC History", 
+# 'ABC','https://www.abc.net.au', formatter("ABC History"),
+# """
+# const container = document.querySelector('[data-component="FeaturedCollection"]');
 
-Array.from(container.querySelectorAll('li'), el => {
-  let Headline = el.querySelector('h3')?.innerText;
-  let Url = el.querySelector('[data-component="Link"]')?.href;
-  let Published = "2025-12-25";
+# Array.from(container.querySelectorAll('li'), el => {
+#   let Headline = el.querySelector('h3')?.innerText;
+#   let Url = el.querySelector('[data-component="Link"]')?.href;
+#   let Published = "2025-12-25";
 
-  return { Headline, Url, Published };
-}).filter(item => item.Headline);""",
-'[data-component="Section"]',
-False, 'every')
+#   return { Headline, Url, Published };
+# }).filter(item => item.Headline);""",
+# '[data-component="Section"]',
+# False, 'every')
 
 
 
@@ -574,3 +574,20 @@ False, 'every')
 
 # return {Headline, Url};
 # })
+
+
+
+
+shot_grabber(0,'https://www.abc.net.au/news/ashley-kyd/5662248',"Ashley Kyd", 
+'ABC','https://www.abc.net.au', formatter("Ashley Kyd"),
+"""
+Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+let Headline = el.querySelector('h3').innerText;
+
+let Url = el.querySelector('[data-component="Link"]')['href']
+let Published = el.querySelector('time').getAttribute("datetime")
+
+return {Headline, Url, Published};
+})""",
+'[data-component="Section"]',
+False, 'low')

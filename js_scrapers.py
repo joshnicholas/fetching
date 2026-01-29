@@ -357,7 +357,7 @@ let Published = el.querySelector('time').getAttribute("datetime")
 return {Headline, Url, Published};
 })""",
 '[data-component="Section"]',
-False, 'low')
+False, 'mid')
 
 
 shot_grabber(0,'https://www.abc.net.au/news/jack-fisher/9808188','ABC Jack Fisher', 
@@ -403,7 +403,7 @@ let Published = el.querySelector('time').getAttribute("datetime")
 return {Headline, Url, Published};
 })""",
 '[data-component="Section"]',
-False, 'mid')
+False, 'high')
 
 
 shot_grabber(0,'https://www.abc.net.au/news/sharon-gordon/101657982',"Sharon Gordon", 
@@ -449,7 +449,7 @@ let Published = el.querySelector('time').getAttribute("datetime")
 return {Headline, Url, Published};
 })""",
 '[data-component="Section"]',
-False, 'high')
+False, 'mid')
 
 
 
@@ -465,7 +465,7 @@ let Published = el.querySelector('time').getAttribute("datetime")
 return {Headline, Url, Published};
 })""",
 '[data-component="Section"]',
-False, 'high')
+False, 'mid')
 
 
 
@@ -497,7 +497,7 @@ let Published = el.querySelector('time').getAttribute("datetime")
 return {Headline, Url, Published};
 })""",
 '[data-component="Section"]',
-False, 'high')
+False, 'mid')
 
 
 
@@ -543,7 +543,7 @@ let Published = el.querySelector('time').getAttribute("datetime")
 return {Headline, Url, Published};
 })""",
 '[data-component="Section"]',
-False, 'high')
+False, 'mid')
 
 
 shot_grabber(0,'https://www.abc.net.au/news/alex-palmer/8752082','ABC Alex Palmer', 
@@ -558,7 +558,7 @@ let Published = el.querySelector('time').getAttribute("datetime")
 return {Headline, Url, Published};
 })""",
 '[data-component="Section"]',
-False, 'high')
+False, 'mid')
 
 
 shot_grabber(0,'https://www.abc.net.au/news/simon-elvery/5449816','ABC Simon Elvery', 
@@ -573,7 +573,7 @@ let Published = el.querySelector('time').getAttribute("datetime")
 return {Headline, Url, Published};
 })""",
 '[data-component="Section"]',
-False, 'high')
+False, 'mid')
 
 
 shot_grabber(0,'https://www.abc.net.au/news/georgina-piper/9255388','Georgina Piper', 
@@ -588,7 +588,7 @@ let Published = el.querySelector('time').getAttribute("datetime")
 return {Headline, Url, Published};
 })""",
 '[data-component="Section"]',
-False, 'high')
+False, 'mid')
 
 
 
@@ -708,7 +708,7 @@ let Published = el.querySelector('time').getAttribute("datetime")
 return {Headline, Url, Published};
 })""",
 '[data-component="Section"]',
-False, 'high')
+False, 'mid')
 
 
 shot_grabber(0,'https://www.straitstimes.com/authors/carlos-marin','Carlos Marin', 
@@ -723,7 +723,7 @@ let Published = el.querySelector('[data-testid="paragraph-test-id"]').innerText
 return {Headline, Url, Published};
 })""",
 '.container',
-False, 'high')
+False, 'mid')
 
 shot_grabber(0,'https://www.straitstimes.com/authors/charlene-chua','Charlene Chua', 
 'Straits Times','https://www.straitstimes.com/', "charlene_chua",
@@ -737,7 +737,7 @@ let Published = el.querySelector('[data-testid="paragraph-test-id"]').innerText
 return {Headline, Url, Published};
 })""",
 '.container',
-False, 'high')
+False, 'mid')
 
 
 shot_grabber(0,'https://www.straitstimes.com/authors/alyssa-karla-mungcal','Alyssa Karla Mungcal', 
@@ -752,7 +752,7 @@ let Published = el.querySelector('[data-testid="paragraph-test-id"]').innerText
 return {Headline, Url, Published};
 })""",
 '.container',
-False, 'high')
+False, 'mid')
 
 shot_grabber(0,'https://www.straitstimes.com/authors/chee-wei-xian','Chee Wei Xian', 
 'Straits Times','https://www.straitstimes.com/', formatter('Chee Wei Xian'),
@@ -766,7 +766,7 @@ let Published = el.querySelector('[data-testid="paragraph-test-id"]').innerText
 return {Headline, Url, Published};
 })""",
 '.container',
-False, 'high')
+False, 'mid')
 
 shot_grabber(0,'https://www.straitstimes.com/authors/shannon-teoh-0','Shannon Teoh', 
 'Straits Times','https://www.straitstimes.com/', formatter('Shannon Teoh'),
@@ -780,7 +780,7 @@ let Published = el.querySelector('[data-testid="paragraph-test-id"]').innerText
 return {Headline, Url, Published};
 })""",
 '.container',
-False, 'high')
+False, 'mid')
 
 
 shot_grabber(0,'https://www.smh.com.au/by/richard-lama-h0x0vk','Richard Lama', 
@@ -794,7 +794,7 @@ Array.from(document.querySelectorAll('[data-testid="story-tile"]'), el => {
 }).filter(item => item.Published)
 """,
 '[data-testid="storyset-assetlist"]',
-False, 'high')
+False, 'mid')
 
 
 json_grabber('https://raw.githubusercontent.com/sammorrisdesign/interactive-feed/refs/heads/main/data/all.json', 'bsky_interactives')
@@ -817,3 +817,16 @@ Array.from(container.querySelectorAll('li'), el => {
 False, 'mid')
 
 
+shot_grabber(0,'https://www.abc.net.au/news/ashley-kyd/5662248',"Ashley Kyd", 
+'ABC','https://www.abc.net.au', formatter("Ashley Kyd"),
+"""
+Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+let Headline = el.querySelector('h3').innerText;
+
+let Url = el.querySelector('[data-component="Link"]')['href']
+let Published = el.querySelector('time').getAttribute("datetime")
+
+return {Headline, Url, Published};
+})""",
+'[data-component="Section"]',
+False, 'low')
