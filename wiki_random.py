@@ -22,6 +22,9 @@ format_scrape_time = datetime.datetime.strftime(scrape_time, "%Y_%m_%d_%H")
 
 urlo = "https://en.wikipedia.org/wiki/Special:Random"
 
+def dumper(path, name, frame):
+    with open(f'{path}/{name}.csv', 'w') as f:
+        frame.to_csv(f, index=False, header=True)
 
 def make_feed(frame, who,site, siteurl, out_path):
 
@@ -43,13 +46,16 @@ def make_feed(frame, who,site, siteurl, out_path):
         fe.id(entries['Url'][ind])
         fe.title(entries['Headline'][ind])
         fe.link(href=entries['Url'][ind])
-        fe.description(entries['Who'][ind])
+        fe.description(entries['Description'][ind] if 'Description' in entries.columns else entries['Who'][ind])
         fe.published(entries['Published'][ind])
 
     # print(f'{out_path}/rss.xml')
     fg.rss_str(pretty=True)
     rssfeed  = fg.rss_str(pretty=True)
     fg.rss_file(f'scraped/{out_path}/rss.xml') 
+
+    dumper(f'scraped/{out_path}', f"latest", frame)
+    dumper(f'scraped/{out_path}/dumps', f"{format_scrape_time }", frame)
 
 # %%
 
@@ -71,6 +77,17 @@ for i in range(0, 5):
 
     soup = bs(r.content, 'html.parser')
 
+    # Extract summary from the first paragraph(s) of the article
+    content_div = soup.select_one('#mw-content-text .mw-parser-output')
+    summary = ""
+    if content_div:
+        # Get first non-empty paragraph (skip any that are just whitespace or contain only images)
+        for p in content_div.find_all('p', recursive=False):
+            text = p.get_text().strip()
+            if text and len(text) > 50:  # Skip very short paragraphs
+                summary = text
+                break
+
     # print(r.text)
     # print(soup.title.string)
     record = {
@@ -80,7 +97,8 @@ for i in range(0, 5):
         "Url":r.url,
         "Site":"Wikipedia",
         "Siteurl":"https://en.wikipedia.org",
-        "Published":format_scrape_time
+        "Published":format_scrape_time,
+        "Description": summary
     }
 
     records.append(record)
