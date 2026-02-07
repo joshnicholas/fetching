@@ -53,6 +53,8 @@ def make_feed(frame, who,site, siteurl, out_path):
 
 # %%
 
+print("Scraping Wiki!")
+
 records = []
 
 for i in range(0, 5):
