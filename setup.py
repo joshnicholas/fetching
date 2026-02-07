@@ -22,6 +22,8 @@ def folds(nammo,pathos="scraped"):
 
 # folds("charlene_chua")
 
+# folds("wiki_random")
+
 import datetime 
 import pytz
 import pandas as pd

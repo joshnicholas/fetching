@@ -6,3 +6,4 @@ feedparser
 dateparser
 pytz
 python-dateutil
+bs4
