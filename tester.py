@@ -578,8 +578,54 @@ def formatter(stringo):
 
 
 
-shot_grabber(0,'https://www.abc.net.au/news/ashley-kyd/5662248',"Ashley Kyd", 
-'ABC','https://www.abc.net.au', formatter("Ashley Kyd"),
+# shot_grabber(0,'https://www.abc.net.au/news/ashley-kyd/5662248',"Ashley Kyd", 
+# 'ABC','https://www.abc.net.au', formatter("Ashley Kyd"),
+# """
+# Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+# let Headline = el.querySelector('h3').innerText;
+
+# let Url = el.querySelector('[data-component="Link"]')['href']
+# let Published = el.querySelector('time').getAttribute("datetime")
+
+# return {Headline, Url, Published};
+# })""",
+# '[data-component="Section"]',
+# False, 'low')
+
+
+# shot_grabber(0,'https://www.abc.net.au/news/ashley-kyd/5662248',"Ashley Kyd", 
+# 'ABC','https://www.abc.net.au', formatter("Ashley Kyd"),
+# """
+# Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+# let Headline = el.querySelector('h3').innerText;
+
+# let Url = el.querySelector('[data-component="Link"]')['href']
+# let Published = el.querySelector('time').getAttribute("datetime")
+
+# return {Headline, Url, Published};
+# })""",
+# '[data-component="Section"]',
+# False, 'low')
+
+
+
+# shot_grabber(0,'https://www.abc.net.au/news/margaret-burin/4218078',"Margaret Burin", 
+# 'ABC','https://www.abc.net.au', formatter("Margaret Burin"),
+# """
+# Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+# let Headline = el.querySelector('h3').innerText;
+
+# let Url = el.querySelector('[data-component="Link"]')['href']
+# let Published = el.querySelector('time').getAttribute("datetime")
+
+# return {Headline, Url, Published};
+# })""",
+# '[data-component="Section"]',
+# False, 'low')
+
+
+shot_grabber(0,'https://www.abc.net.au/news/jarrod-fankhauser/11325548',"Jarrod Fankhauser", 
+'ABC','https://www.abc.net.au', formatter("Jarrod Fankhauser"),
 """
 Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
 let Headline = el.querySelector('h3').innerText;
@@ -591,3 +637,6 @@ return {Headline, Url, Published};
 })""",
 '[data-component="Section"]',
 False, 'low')
+
+
+
