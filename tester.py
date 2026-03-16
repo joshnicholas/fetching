@@ -624,19 +624,45 @@ def formatter(stringo):
 # False, 'low')
 
 
-shot_grabber(0,'https://www.abc.net.au/news/jarrod-fankhauser/11325548',"Jarrod Fankhauser", 
-'ABC','https://www.abc.net.au', formatter("Jarrod Fankhauser"),
-"""
-Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
-let Headline = el.querySelector('h3').innerText;
+# shot_grabber(0,'https://www.abc.net.au/news/jarrod-fankhauser/11325548',"Jarrod Fankhauser", 
+# 'ABC','https://www.abc.net.au', formatter("Jarrod Fankhauser"),
+# """
+# Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+# let Headline = el.querySelector('h3').innerText;
 
-let Url = el.querySelector('[data-component="Link"]')['href']
-let Published = el.querySelector('time').getAttribute("datetime")
+# let Url = el.querySelector('[data-component="Link"]')['href']
+# let Published = el.querySelector('time').getAttribute("datetime")
 
-return {Headline, Url, Published};
-})""",
-'[data-component="Section"]',
-False, 'low')
+# return {Headline, Url, Published};
+# })""",
+# '[data-component="Section"]',
+# False, 'low')
 
+# shot_grabber(0,'https://www.abc.net.au/news/tim-leslie/167086',"Tim Leslie", 
+# 'ABC','https://www.abc.net.au', formatter("Tim Leslie"),
+# """
+# Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+# let Headline = el.querySelector('h3').innerText;
 
+# let Url = el.querySelector('[data-component="Link"]')['href']
+# let Published = el.querySelector('time').getAttribute("datetime")
+
+# return {Headline, Url, Published};
+# })""",
+# '[data-component="Section"]',
+# False, 'low')
+
+# shot_grabber(0,'https://www.abc.net.au/news/clare-blumer/6335728',"Clare Blumer", 
+# 'ABC','https://www.abc.net.au', formatter("Clare Blumer"),
+# """
+# Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+# let Headline = el.querySelector('h3').innerText;
+
+# let Url = el.querySelector('[data-component="Link"]')['href']
+# let Published = el.querySelector('time').getAttribute("datetime")
+
+# return {Headline, Url, Published};
+# })""",
+# '[data-component="Section"]',
+# False, 'low')
 
