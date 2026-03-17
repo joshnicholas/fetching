@@ -891,5 +891,18 @@ return {Headline, Url, Published};
 '[data-component="Section"]',
 False, 'low')
 
+shot_grabber(0,'https://www.abc.net.au/news/magie-khameneh/104845766',"Magie Khameneh", 
+'ABC','https://www.abc.net.au', formatter("Magie Khameneh"),
+"""
+Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+let Headline = el.querySelector('h3').innerText;
+
+let Url = el.querySelector('[data-component="Link"]')['href']
+let Published = el.querySelector('time').getAttribute("datetime")
+
+return {Headline, Url, Published};
+})""",
+'[data-component="Section"]',
+False, 'low')
 
 import wiki_random
