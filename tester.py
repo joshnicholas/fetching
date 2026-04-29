@@ -681,5 +681,19 @@ def formatter(stringo):
 # False, 'low')
 
 
+# shot_grabber(0,'https://www.theage.com.au/by/daniel-brettig-p4ywcj','Daniel Brettig', 
+# 'The Age','https://www.theage.com.au/', "daniel_brettig",
+# """
+# Array.from(document.querySelectorAll('._3SZUs,.X3yYQ'), el => {
+# let Headline = el.querySelector('h3').innerText;
+# let Url = el.querySelector('a')['href']
+# let Published = el.querySelector('._2_zR-')['dateTime']
+# return {Headline, Url, Published};
+# })""",
+# '._2VCps _2GpEY')
+
+
+
+
 
 

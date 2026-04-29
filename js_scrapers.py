@@ -829,7 +829,7 @@ let Published = el.querySelector('time').getAttribute("datetime")
 return {Headline, Url, Published};
 })""",
 '[data-component="Section"]',
-False, 'low')
+False, 'high')
 
 
 shot_grabber(0,'https://www.abc.net.au/news/margaret-burin/4218078',"Margaret Burin", 
@@ -844,7 +844,7 @@ let Published = el.querySelector('time').getAttribute("datetime")
 return {Headline, Url, Published};
 })""",
 '[data-component="Section"]',
-False, 'low')
+False, 'high')
 
 
 shot_grabber(0,'https://www.abc.net.au/news/jarrod-fankhauser/11325548',"Jarrod Fankhauser", 
@@ -859,7 +859,7 @@ let Published = el.querySelector('time').getAttribute("datetime")
 return {Headline, Url, Published};
 })""",
 '[data-component="Section"]',
-False, 'low')
+False, 'mid')
 
 
 
@@ -875,7 +875,7 @@ let Published = el.querySelector('time').getAttribute("datetime")
 return {Headline, Url, Published};
 })""",
 '[data-component="Section"]',
-False, 'low')
+False, 'high')
 
 shot_grabber(0,'https://www.abc.net.au/news/clare-blumer/6335728',"Clare Blumer", 
 'ABC','https://www.abc.net.au', formatter("Clare Blumer"),
@@ -889,7 +889,7 @@ let Published = el.querySelector('time').getAttribute("datetime")
 return {Headline, Url, Published};
 })""",
 '[data-component="Section"]',
-False, 'low')
+False, 'high')
 
 shot_grabber(0,'https://www.abc.net.au/news/magie-khameneh/104845766',"Magie Khameneh", 
 'ABC','https://www.abc.net.au', formatter("Magie Khameneh"),
@@ -903,6 +903,20 @@ let Published = el.querySelector('time').getAttribute("datetime")
 return {Headline, Url, Published};
 })""",
 '[data-component="Section"]',
-False, 'low')
+False, 'high')
+
+
+shot_grabber(0,'https://www.smh.com.au/by/tommy-saputra-p536xt','Tommy Saputra', 
+'SMH','https://www.smh.com.au/',formatter("Tommy Saputra"),
+"""
+Array.from(document.querySelectorAll('[data-testid="story-tile"]'), el => {
+  let Headline = el.querySelector('h3')?.innerText;
+  let Url = el.querySelector('a')?.href;
+  let Published = el.querySelector('[data-testid="storytile-timestamp"]')?.dateTime;
+  return { Headline, Url, Published };
+}).filter(item => item.Published)
+""",
+'[data-testid="storyset-assetlist"]',
+False, 'high')
 
 import wiki_random
