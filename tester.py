@@ -90,6 +90,7 @@ def make_feed(frame, who,site, siteurl, out_path):
     fg.rss_file(f'scraped/{out_path}/rss.xml') 
 
 def shot_grabber(tries, urlo, who,site, siteurl, out_path,  javascript_code, awaito, wait=False, delayo='high'):
+    # print(delayo, delayer(delayo))
     if delayer(delayo):
         print(f"\nScraping {who}")
         make_path(out_path)
@@ -114,7 +115,7 @@ def shot_grabber(tries, urlo, who,site, siteurl, out_path,  javascript_code, awa
 
                 resulto = page.evaluate(javascript_code)
 
-                # print("Resulto: ", resulto)
+                print("Resulto: ", resulto)
 
                 context.close()
                 browser.close()
@@ -695,5 +696,45 @@ def formatter(stringo):
 
 
 
+# print('Hi')
+
+shot_grabber(0,'https://www.straitstimes.com/tags/today-in-pictures','Straits Times Photos', 
+'Straits Times','https://www.straitstimes.com/', formatter('Straits Times Photos'),
+"""
+Array.from(document.querySelectorAll('[data-testid="custom-link"]'), el => {
+  const Headline = el.querySelector('h4')?.innerText.trim();
+  const Url = el.href;
+
+  const Published = Headline?.split(',').slice(1).join(',').trim() || null;
+
+  return { Headline, Url, Published };
+}).filter(item => !isNaN(Date.parse(item.Published)));""",
+'.container', False, 'every')
+
+
+# def shot_grabber(tries, urlo, who,site, siteurl, out_path,  javascript_code, awaito, wait=False, delayo='high'):
+
+
+
+
+
+
+shot_grabber(0,'https://www.afr.com/by/joshua-peach-p536zp','Joshua Peach', 
+'AFR','https://www.afr.com', formatter('Joshua Peach'),
+"""
+Array.from(
+  document.querySelectorAll('[data-testid="StoryTileBase"]'),
+  el => {
+    const headlineLink = el.querySelector('h3 a[data-testid="headlineLink"]');
+    const timestamp = el.querySelector('[data-testid="StoryTile-Timestamp"]');
+
+    return {
+      Headline: headlineLink?.textContent?.trim(),
+      Url: headlineLink?.href,
+      Published: timestamp?.innerText
+    };
+  }
+);""",
+'.container', False, 'high')
 
 
