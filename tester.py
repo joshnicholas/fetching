@@ -698,18 +698,18 @@ def formatter(stringo):
 
 # print('Hi')
 
-shot_grabber(0,'https://www.straitstimes.com/tags/today-in-pictures','Straits Times Photos', 
-'Straits Times','https://www.straitstimes.com/', formatter('Straits Times Photos'),
-"""
-Array.from(document.querySelectorAll('[data-testid="custom-link"]'), el => {
-  const Headline = el.querySelector('h4')?.innerText.trim();
-  const Url = el.href;
+# shot_grabber(0,'https://www.straitstimes.com/tags/today-in-pictures','Straits Times Photos', 
+# 'Straits Times','https://www.straitstimes.com/', formatter('Straits Times Photos'),
+# """
+# Array.from(document.querySelectorAll('[data-testid="custom-link"]'), el => {
+#   const Headline = el.querySelector('h4')?.innerText.trim();
+#   const Url = el.href;
 
-  const Published = Headline?.split(',').slice(1).join(',').trim() || null;
+#   const Published = Headline?.split(',').slice(1).join(',').trim() || null;
 
-  return { Headline, Url, Published };
-}).filter(item => !isNaN(Date.parse(item.Published)));""",
-'.container', False, 'every')
+#   return { Headline, Url, Published };
+# }).filter(item => !isNaN(Date.parse(item.Published)));""",
+# '.container', False, 'every')
 
 
 # def shot_grabber(tries, urlo, who,site, siteurl, out_path,  javascript_code, awaito, wait=False, delayo='high'):
@@ -719,22 +719,43 @@ Array.from(document.querySelectorAll('[data-testid="custom-link"]'), el => {
 
 
 
-shot_grabber(0,'https://www.afr.com/by/joshua-peach-p536zp','Joshua Peach', 
-'AFR','https://www.afr.com', formatter('Joshua Peach'),
-"""
-Array.from(
-  document.querySelectorAll('[data-testid="StoryTileBase"]'),
-  el => {
-    const headlineLink = el.querySelector('h3 a[data-testid="headlineLink"]');
-    const timestamp = el.querySelector('[data-testid="StoryTile-Timestamp"]');
+# shot_grabber(0,'https://www.afr.com/by/joshua-peach-p536zp','Joshua Peach', 
+# 'AFR','https://www.afr.com', formatter('Joshua Peach'),
+# """
+# Array.from(
+#   document.querySelectorAll('[data-testid="StoryTileBase"]'),
+#   el => {
+#     const headlineLink = el.querySelector('h3 a[data-testid="headlineLink"]');
+#     const timestamp = el.querySelector('[data-testid="StoryTile-Timestamp"]');
 
-    return {
-      Headline: headlineLink?.textContent?.trim(),
-      Url: headlineLink?.href,
-      Published: timestamp?.innerText
-    };
-  }
-);""",
-'.container', False, 'high')
+#     return {
+#       Headline: headlineLink?.textContent?.trim(),
+#       Url: headlineLink?.href,
+#       Published: timestamp?.innerText
+#     };
+#   }
+# );""",
+# '.container', False, 'high')
 
 
+# shot_grabber(0,'https://www.afr.com/by/daniel-reti-p537oa','Daniel Reti', 
+# 'AFR','https://www.afr.com', formatter('Daniel Reti'),
+# """
+# Array.from(
+#   document.querySelectorAll('[data-testid="StoryTileBase"]'),
+#   el => {
+#     const headlineLink = el.querySelector('h3 a[data-testid="headlineLink"]');
+#     const timestamp = el.querySelector('[data-testid="StoryTile-Timestamp"]');
+
+#     return {
+#       Headline: headlineLink?.textContent?.trim(),
+#       Url: headlineLink?.href,
+#       Published: timestamp?.innerText
+#     };
+#   }
+# );""",
+# '.container', False, 'mid')
+
+
+
+# https://www.afr.com/by/daniel-reti-p537oa

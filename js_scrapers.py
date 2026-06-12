@@ -952,4 +952,23 @@ Array.from(
 );""",
 '.container', False, 'mid')
 
+
+shot_grabber(0,'https://www.afr.com/by/daniel-reti-p537oa','Daniel Reti', 
+'AFR','https://www.afr.com', formatter('Daniel Reti'),
+"""
+Array.from(
+  document.querySelectorAll('[data-testid="StoryTileBase"]'),
+  el => {
+    const headlineLink = el.querySelector('h3 a[data-testid="headlineLink"]');
+    const timestamp = el.querySelector('[data-testid="StoryTile-Timestamp"]');
+
+    return {
+      Headline: headlineLink?.textContent?.trim(),
+      Url: headlineLink?.href,
+      Published: timestamp?.innerText
+    };
+  }
+);""",
+'.container', False, 'mid')
+
 import wiki_random
