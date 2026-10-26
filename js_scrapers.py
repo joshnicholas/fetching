@@ -254,17 +254,17 @@ False, 'low')
 
 
 
-shot_grabber(0,'https://www.smh.com.au/by/sean-kelly-h1d26a','Sean Kelly', 
-'SMH','https://www.smh.com.au/', "sean_kelly",
-"""
-Array.from(document.querySelectorAll('[data-testid="story-tile"]'), el => {
-let Headline = el.querySelector('h3').innerText;
-let Url = el.querySelector('a')['href']
-let Published = el.querySelector('[data-testid="storytile-timestamp"]')['dateTime']
-return {Headline, Url, Published};
-})""",
-'[data-testid="storyset-assetlist"]',
-False, 'high')
+# shot_grabber(0,'https://www.smh.com.au/by/sean-kelly-h1d26a','Sean Kelly', 
+# 'SMH','https://www.smh.com.au/', "sean_kelly",
+# """
+# Array.from(document.querySelectorAll('[data-testid="story-tile"]'), el => {
+# let Headline = el.querySelector('h3').innerText;
+# let Url = el.querySelector('a')['href']
+# let Published = el.querySelector('[data-testid="storytile-timestamp"]')['dateTime']
+# return {Headline, Url, Published};
+# })""",
+# '[data-testid="storyset-assetlist"]',
+# False, 'high')
 
 
 
@@ -501,33 +501,33 @@ False, 'mid')
 
 
 
-shot_grabber(0,'https://www.abc.net.au/news/jonathan-hair/6531486',"Jonathan Hair", 
-'ABC','https://www.abc.net.au', formatter("Jonathan Hair"),
-"""
-Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
-let Headline = el.querySelector('h3').innerText;
+# shot_grabber(0,'https://www.abc.net.au/news/jonathan-hair/6531486',"Jonathan Hair", 
+# 'ABC','https://www.abc.net.au', formatter("Jonathan Hair"),
+# """
+# Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+# let Headline = el.querySelector('h3').innerText;
 
-let Url = el.querySelector('[data-component="Link"]')['href']
-let Published = el.querySelector('time').getAttribute("datetime")
+# let Url = el.querySelector('[data-component="Link"]')['href']
+# let Published = el.querySelector('time').getAttribute("datetime")
 
-return {Headline, Url, Published};
-})""",
-'[data-component="Section"]',
-False, 'low')
+# return {Headline, Url, Published};
+# })""",
+# '[data-component="Section"]',
+# False, 'low')
 
-shot_grabber(0,'https://www.abc.net.au/news/maryanne-taouk/12481846',"Maryanne Taouk", 
-'ABC','https://www.abc.net.au', formatter("Maryanne Taouk"),
-"""
-Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
-let Headline = el.querySelector('h3').innerText;
+# shot_grabber(0,'https://www.abc.net.au/news/maryanne-taouk/12481846',"Maryanne Taouk", 
+# 'ABC','https://www.abc.net.au', formatter("Maryanne Taouk"),
+# """
+# Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+# let Headline = el.querySelector('h3').innerText;
 
-let Url = el.querySelector('[data-component="Link"]')['href']
-let Published = el.querySelector('time').getAttribute("datetime")
+# let Url = el.querySelector('[data-component="Link"]')['href']
+# let Published = el.querySelector('time').getAttribute("datetime")
 
-return {Headline, Url, Published};
-})""",
-'[data-component="Section"]',
-False, 'low')
+# return {Headline, Url, Published};
+# })""",
+# '[data-component="Section"]',
+# False, 'low')
 
 
 
@@ -546,19 +546,19 @@ return {Headline, Url, Published};
 False, 'mid')
 
 
-shot_grabber(0,'https://www.abc.net.au/news/alex-palmer/8752082','ABC Alex Palmer', 
-'ABC','https://www.abc.net.au', "alex_palmer",
-"""
-Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
-let Headline = el.querySelector('h3').innerText;
+# shot_grabber(0,'https://www.abc.net.au/news/alex-palmer/8752082','ABC Alex Palmer', 
+# 'ABC','https://www.abc.net.au', "alex_palmer",
+# """
+# Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+# let Headline = el.querySelector('h3').innerText;
 
-let Url = el.querySelector('[data-component="Link"]')['href']
-let Published = el.querySelector('time').getAttribute("datetime")
+# let Url = el.querySelector('[data-component="Link"]')['href']
+# let Published = el.querySelector('time').getAttribute("datetime")
 
-return {Headline, Url, Published};
-})""",
-'[data-component="Section"]',
-False, 'mid')
+# return {Headline, Url, Published};
+# })""",
+# '[data-component="Section"]',
+# False, 'mid')
 
 
 shot_grabber(0,'https://www.abc.net.au/news/simon-elvery/5449816','ABC Simon Elvery', 
@@ -638,34 +638,34 @@ False, 'mid')
 
 #     rand_delay(2)
 
-shot_grabber(0,'https://www.abc.net.au/news/cody-atkinson/12422846','ABC Cody Atkinson', 
-'ABC','https://www.abc.net.au', "cody_atkinson",
-"""
-Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
-let Headline = el.querySelector('h3').innerText;
+# shot_grabber(0,'https://www.abc.net.au/news/cody-atkinson/12422846','ABC Cody Atkinson', 
+# 'ABC','https://www.abc.net.au', "cody_atkinson",
+# """
+# Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+# let Headline = el.querySelector('h3').innerText;
 
-let Url = el.querySelector('[data-component="Link"]')['href']
-let Published = el.querySelector('time').getAttribute("datetime")
+# let Url = el.querySelector('[data-component="Link"]')['href']
+# let Published = el.querySelector('time').getAttribute("datetime")
 
-return {Headline, Url, Published};
-})""",
-'[data-component="Section"]',
-False, 'mid')
+# return {Headline, Url, Published};
+# })""",
+# '[data-component="Section"]',
+# False, 'mid')
 
 
-shot_grabber(0,'https://www.abc.net.au/news/sean-lawson/12422842','ABC Sean Lawson', 
-'ABC','https://www.abc.net.au', "sean-lawson",
-"""
-Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
-let Headline = el.querySelector('h3').innerText;
+# shot_grabber(0,'https://www.abc.net.au/news/sean-lawson/12422842','ABC Sean Lawson', 
+# 'ABC','https://www.abc.net.au', "sean-lawson",
+# """
+# Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+# let Headline = el.querySelector('h3').innerText;
 
-let Url = el.querySelector('[data-component="Link"]')['href']
-let Published = el.querySelector('time').getAttribute("datetime")
+# let Url = el.querySelector('[data-component="Link"]')['href']
+# let Published = el.querySelector('time').getAttribute("datetime")
 
-return {Headline, Url, Published};
-})""",
-'[data-component="Section"]',
-False, 'mid')
+# return {Headline, Url, Published};
+# })""",
+# '[data-component="Section"]',
+# False, 'mid')
 
 
 shot_grabber(0,'https://www.aljazeera.com/interactives/','Al Jazeera', 
@@ -797,7 +797,7 @@ Array.from(document.querySelectorAll('[data-testid="story-tile"]'), el => {
 False, 'mid')
 
 
-json_grabber('https://raw.githubusercontent.com/sammorrisdesign/interactive-feed/refs/heads/main/data/all.json', 'bsky_interactives')
+# json_grabber('https://raw.githubusercontent.com/sammorrisdesign/interactive-feed/refs/heads/main/data/all.json', 'bsky_interactives')
 
 
 
@@ -877,19 +877,19 @@ return {Headline, Url, Published};
 '[data-component="Section"]',
 False, 'high')
 
-shot_grabber(0,'https://www.abc.net.au/news/clare-blumer/6335728',"Clare Blumer", 
-'ABC','https://www.abc.net.au', formatter("Clare Blumer"),
-"""
-Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
-let Headline = el.querySelector('h3').innerText;
+# shot_grabber(0,'https://www.abc.net.au/news/clare-blumer/6335728',"Clare Blumer", 
+# 'ABC','https://www.abc.net.au', formatter("Clare Blumer"),
+# """
+# Array.from(document.querySelectorAll('[data-component="DetailCard"]'), el => {
+# let Headline = el.querySelector('h3').innerText;
 
-let Url = el.querySelector('[data-component="Link"]')['href']
-let Published = el.querySelector('time').getAttribute("datetime")
+# let Url = el.querySelector('[data-component="Link"]')['href']
+# let Published = el.querySelector('time').getAttribute("datetime")
 
-return {Headline, Url, Published};
-})""",
-'[data-component="Section"]',
-False, 'high')
+# return {Headline, Url, Published};
+# })""",
+# '[data-component="Section"]',
+# False, 'high')
 
 shot_grabber(0,'https://www.abc.net.au/news/magie-khameneh/104845766',"Magie Khameneh", 
 'ABC','https://www.abc.net.au', formatter("Magie Khameneh"),
@@ -920,18 +920,18 @@ Array.from(document.querySelectorAll('[data-testid="story-tile"]'), el => {
 False, 'high')
 
 
-shot_grabber(0,'https://www.straitstimes.com/tags/today-in-pictures','Straits Times Photos', 
-'Straits Times','https://www.straitstimes.com/', formatter('Straits Times Photos'),
-"""
-Array.from(document.querySelectorAll('[data-testid="custom-link"]'), el => {
-  const Headline = el.querySelector('h4')?.innerText.trim();
-  const Url = el.href;
+# shot_grabber(0,'https://www.straitstimes.com/tags/today-in-pictures','Straits Times Photos', 
+# 'Straits Times','https://www.straitstimes.com/', formatter('Straits Times Photos'),
+# """
+# Array.from(document.querySelectorAll('[data-testid="custom-link"]'), el => {
+#   const Headline = el.querySelector('h4')?.innerText.trim();
+#   const Url = el.href;
 
-  const Published = Headline?.split(',').slice(1).join(',').trim() || null;
+#   const Published = Headline?.split(',').slice(1).join(',').trim() || null;
 
-  return { Headline, Url, Published };
-}).filter(item => !isNaN(Date.parse(item.Published)));""",
-'.container', False, 'every')
+#   return { Headline, Url, Published };
+# }).filter(item => !isNaN(Date.parse(item.Published)));""",
+# '.container', False, 'every')
 
 
 shot_grabber(0,'https://www.afr.com/by/joshua-peach-p536zp','Joshua Peach', 
