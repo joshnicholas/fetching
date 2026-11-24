@@ -95,7 +95,7 @@ def json_grabber(pathos, out_path):
         datah[col] = datah[col].apply(clean_xml_text)
 
     dumper(f'scraped/{out_path}', f"latest", datah)
-    dumper(f'scraped/{out_path}/dumps', f"{format_scrape_time }", datah)
+    # dumper(f'scraped/{out_path}/dumps', f"{format_scrape_time }", datah)
 
     datah = datah[:20]
     # dumper(f'scraped/{out_path}', f"latest", datah)

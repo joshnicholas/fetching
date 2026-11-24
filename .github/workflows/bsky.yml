@@ -1,0 +1,45 @@
+name: Bluesky scraper
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 18 * * *"
+    - cron: "0 6 * * *"
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out this repo
+        uses: actions/checkout@v4
+      - name: Set up Python 3.12
+        uses: actions/setup-python@master
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - uses: actions/cache@v4
+        name: Configure pip caching
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: 🦋 Scrape Bluesky accounts
+        run: python3 bsky_scraper.py
+
+      - name: 🚀 Commit and push if it changed
+        run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git add -A
+          timestamp=$(date -u)
+          git commit -m "Bluesky update: ${timestamp}" || exit 0
+          git push

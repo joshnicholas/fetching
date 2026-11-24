@@ -62,7 +62,6 @@ def make_path(out_path):
     if out_path not in already_there:
         # print('SOMETHING')
         os.mkdir(f"scraped/{out_path}")
-        os.mkdir(f"scraped/{out_path}/dumps")
 
 def dumper(path, name, frame):
     with open(f'{path}/{name}.csv', 'w') as f:
@@ -152,7 +151,7 @@ def shot_grabber(tries, urlo, who,site, siteurl, out_path,  javascript_code, awa
                 frame['Published'] = frame['Published'].dt.strftime("%Y_%m_%d_%H")
 
                 dumper(f'scraped/{out_path}', f"latest", frame)
-                dumper(f'scraped/{out_path}/dumps', f"{format_scrape_time }", frame)
+                # dumper(f'scraped/{out_path}/dumps', f"{format_scrape_time }", frame)
 
                 rand_delay(5)
 
@@ -211,7 +210,7 @@ def json_grabber(pathos, out_path):
         datah[col] = datah[col].apply(clean_xml_text)
 
     dumper(f'scraped/{out_path}', f"latest", datah)
-    dumper(f'scraped/{out_path}/dumps', f"{format_scrape_time }", datah)
+    # dumper(f'scraped/{out_path}/dumps', f"{format_scrape_time }", datah)
 
     datah = datah[:20]
 

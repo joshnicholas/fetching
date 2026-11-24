@@ -55,7 +55,7 @@ def make_feed(frame, who,site, siteurl, out_path):
     fg.rss_file(f'scraped/{out_path}/rss.xml') 
 
     dumper(f'scraped/{out_path}', f"latest", frame)
-    dumper(f'scraped/{out_path}/dumps', f"{format_scrape_time }", frame)
+    # dumper(f'scraped/{out_path}/dumps', f"{format_scrape_time }", frame)
 
 # %%
 

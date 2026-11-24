@@ -8,7 +8,6 @@ def folds(nammo,pathos="scraped"):
     print(f"{os.getcwd()}/{pathos}/{nammo}")
     try:
         os.mkdir(f"{os.getcwd()}/{pathos}/{nammo}")
-        os.mkdir(f"{os.getcwd()}/{pathos}/{nammo}/dumps")
         print(f"Folder created successfully.")
     except FileExistsError:
         print(f"Folder already exist.")

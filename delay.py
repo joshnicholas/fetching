@@ -4,11 +4,11 @@
 import random
 import pandas as pd 
 
-import matplotlib.pylab as pylt
-pylt.rcParams['figure.dpi'] = 200
-import seaborn as sns
-import matplotlib.pyplot as plt 
-%matplotlib inline
+# import matplotlib.pylab as pylt
+# pylt.rcParams['figure.dpi'] = 200
+# import seaborn as sns
+# import matplotlib.pyplot as plt 
+# %matplotlib inline
 
 from sudulunu.helpers import pp, dumper
 
@@ -39,38 +39,38 @@ def delayer(disto = 'mid'):
 
 # %%
 
-records = []
+# records = []
 
-for i in range(0, 100):
+# for i in range(0, 100):
 
-    for thingo in ['low', 'mid', 'high']:
-        # record[thingo] = delayer(thingo)
+#     for thingo in ['low', 'mid', 'high']:
+#         # record[thingo] = delayer(thingo)
         
-        record = {"Variable": thingo, 'Value': delayer(thingo)}
-        # donner = delayer(thingo)
+#         record = {"Variable": thingo, 'Value': delayer(thingo)}
+#         # donner = delayer(thingo)
 
 
-        records.append(record)
+#         records.append(record)
 
-cat = pd.DataFrame.from_records(records)
+# cat = pd.DataFrame.from_records(records)
 
-pp(cat)
-
-
-# %%
-
-sns.kdeplot(cat, x='Value', hue='Variable')
-sns.countplot(cat, x='Value', hue='Variable')
-
-# %%
+# pp(cat)
 
 
-if delayer('high'):
-    print('Hi')
-else:
-    print("No")
-# %%
+# # %%
 
-if delayer('every'):
-    print("Hihi")
-# %%
+# sns.kdeplot(cat, x='Value', hue='Variable')
+# sns.countplot(cat, x='Value', hue='Variable')
+
+# # %%
+
+
+# if delayer('high'):
+#     print('Hi')
+# else:
+#     print("No")
+# # %%
+
+# if delayer('every'):
+#     print("Hihi")
+# # %%
